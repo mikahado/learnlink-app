@@ -1,0 +1,8 @@
+ In the root directory, run pipenv install && pipenv shell to create and enter the virtual environment:
+ 
+pipenv install
+pipenv shell
+
+flask db upgrade
+
+
