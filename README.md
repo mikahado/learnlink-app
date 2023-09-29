@@ -55,7 +55,7 @@ Flask application: [http://127.0.0.1:5555](http://127.0.0.1:5555)
 - Incorporates ARIA Authoring Practices Guide (APG).
 - Reading curriculum highlights Augmentative and Alternative Communication (AAC) needs.
 - Visual design promotes high-contrast and color-permitting options for visual variances.
-- Innovative AI text-to-speech option that offers the student to hear their personal teacher's voice. 
+- Multi-lingual AI text-to-speech option that offers the student to hear their personal teacher's voice. 
 
 
 ### AI
