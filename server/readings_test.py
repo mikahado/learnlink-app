@@ -1,12 +1,12 @@
 stories = [
     
-    "The Hare & the Tortoise",
+    "The Hare and the Tortoise",
 
     "The Lion and the Mouse",
 
-    "The Dog & His Reflection",
+    "The Dog and His Reflection",
 
-    "The Crow & the Pitcher",
+    "The Crow and the Pitcher",
 
-    "The Ants & the Grasshopper"
+    "The Ants and the Grasshopper"
 ]
