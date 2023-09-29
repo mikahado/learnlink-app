@@ -1,7 +1,7 @@
-// import { useEffect } from "react";
-//import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-
 import React from 'react'
+// import { useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import StudentHome from './student/StudentHome';
 
 const App = () => {
 
@@ -13,15 +13,11 @@ const App = () => {
 
   return (
     <>
-      <h1 className="text-blue-500">Hello Hackathon Group 9!</h1>
-
-      {/* <Router>
+      <Router>
         <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="/users" element={<UsersPage />} />
+          <Route path="/students/:studentId" element={<StudentHome />} />
         </Routes>
-      </Router> */}
+      </Router>
 
     </>
   );
