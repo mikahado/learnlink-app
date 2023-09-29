@@ -17,6 +17,8 @@ db = SQLAlchemy()
 class Teacher(db.Model, SerializerMixin):
     __tablename__ = 'teachers'
 
+    serialize_rules = ('-students.teacher','-subjects.teacher')
+
     id = db.Column(db.Integer, primary_key=True)
     first_name = db.Column(db.String)
     last_name = db.Column(db.String)
@@ -27,7 +29,8 @@ class Teacher(db.Model, SerializerMixin):
     pin = db.Column(db.Integer)
     voice = db.Column(db.Integer)
 
-    students = db.relationship('Student', backref='teacher', lazy=True)
+    subject = db.Column(db.Integer, db.ForeignKey('subjects.id'), nullable=False)
+    student = db.relationship('Student', backref='teacher', lazy=True)
 
     @validates('email')
     def validate_name(self, key, email):
@@ -51,6 +54,8 @@ class Teacher(db.Model, SerializerMixin):
 class Student(db.Model, SerializerMixin):
     __tablename__ = 'students'
 
+    serialize_rules = ('-subjects.student',)
+
     id = db.Column(db.Integer, primary_key=True)
     first_name = db.Column(db.String)
     last_name = db.Column(db.String)
@@ -60,10 +65,11 @@ class Student(db.Model, SerializerMixin):
     school_name = db.Column(db.String)
     classroom = db.Column(db.String)
     accomodations = db.Column(db.String)
-    progress = db.Column(db.Array)
+    progress = db.Column(db.Integer)
     bio = db.Column(db.String)
 
-    teacher_id = db.Column(db.Integer, db.ForeignKey('teacher.id'), nullable=False)
+    teacher = db.Column(db.Integer, db.ForeignKey('teachers.id'), nullable=False)
+    subject = db.Column(db.Integer, db.ForeignKey('subjects.id'), nullable=False)
 
     
     @validates('bio')
@@ -76,3 +82,14 @@ class Student(db.Model, SerializerMixin):
     def __repr__(self):
         return f'<Student {self.title}>'
     
+class Subject(db.Model, SerializerMixin):
+    __tablename__ = 'subjects'
+
+    serialize_rules = ('-teacher.subjects','-student.subjects')
+
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String)
+    content = db.Column(db.String)
+    
+    student = db.relationship('Student', backref='subject', lazy=True)
+    teacher = db.relationship('Student', backref='subject', lazy=True)
