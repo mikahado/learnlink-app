@@ -2,7 +2,7 @@ import os
 import elevenlabs
 from elevenlabs import set_api_key, clone, generate, stream, play
 from dotenv import load_dotenv
-from readings import stories
+from readings_test import stories
 
 load_dotenv()
 # Get the API key from the environment
@@ -16,7 +16,7 @@ if selected_story_index >= 0 and selected_story_index < len(stories):
     selected_story = stories[selected_story_index]
 
     # Generate and play the audio for the selected story
-    audio = elevenlabs.generate(text=selected_story, voice="Michael")
+    audio = elevenlabs.generate(text=selected_story, voice="Bella")
     elevenlabs.play(audio)
 
 else:
