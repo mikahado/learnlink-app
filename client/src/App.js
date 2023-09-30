@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { Route, Routes } from 'react-router-dom';
 
 import TextToSpeech from './TextToSpeech'
-import TextToSpeechAdd from './TextToSpeechAdd'
+import TextToSpeechAdd2 from './TextToSpeechAdd2'
 
 const App = () => {
 
@@ -19,7 +19,7 @@ const App = () => {
       <Routes>
 
         <Route exact path="/tts" element={<TextToSpeech />} />
-        <Route exact path="/ttsadd" element={<TextToSpeechAdd />} />
+        <Route exact path="/ttsadd" element={<TextToSpeechAdd2 />} />
 
 
 
