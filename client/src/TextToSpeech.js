@@ -1,14 +1,22 @@
 import React, { useState } from "react";
 import axios from "axios";
+import stories from './ReadingsTest';
 
-const TextToSpeech = () => {
+const TextToSpeech = ({teacher_voice_id}) => {
 
-    const voiceId = "21m00Tcm4TlvDq8ikWAM";
-    const text = "Hello, this is a sample text to stream as speech.";
+  // pass down the voiceID of teacher. if it's null, then use default voiceID
+
+    const voiceId = teacher_voice_id ? teacher_voice_id : "flq6f7yk4E4fJM5XTYuZ";
+
+    // this variable MUST be named 'text' for the API to work
+    const text = "test"
+    // const text = stories[0];
+   
     const apiKey = process.env.ELEVENLABS_API_KEY;
+   
     const voiceSettings = {
-      stability: 0,
-      similarity_boost: 0,
+      stability: 0.7,
+      similarity_boost: 0.5,
     };
 
   const [loading, setLoading] = useState(false);
@@ -39,10 +47,10 @@ const TextToSpeech = () => {
         const audio = new Audio(URL.createObjectURL(response.data));
         audio.play();
       } else {
-        setError("Error: Unable to stream audio.");
+        setError("Uh oh! Ask your teacher for help.");
       }
     } catch (error) {
-      setError("Error: Unable to stream audio.");
+      setError("Uh oh! Ask your teacher for help.");
     } finally {
       setLoading(false);
     }
