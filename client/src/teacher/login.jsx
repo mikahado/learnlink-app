@@ -22,11 +22,11 @@ function LoginTeacher() {
         </form>
         <button
           type="submit"
-          className="block m-4 border font-thin rounded-lg border-black bg-slate-300 lg:w-48 md:w-40 sm:w-24"
+          className="block m-4 border font-thin rounded-lg border-black bg-slate-300 lg:w-48 md:w-40 sm:w-24 px-3"
         >
           Login
         </button>
-        <button className="block border rounded-lg font-thin border-black lg:w-48 md:w-40 sm:w-24">
+        <button className="block border rounded-lg font-thin border-black lg:w-48 md:w-40 sm:w-24 px-3">
           Sign Up
         </button>
       </div>
