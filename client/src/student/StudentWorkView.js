@@ -8,14 +8,19 @@ function StudentWorkView() {
 
   const textSizeClass = ["text-base", "text-xl", "text-3xl", "text-5xl", "text-7xl"];
   const [showImages, setShowImages] = useState(true);
-  const [textSizeToggle, setTextSizeToggle] = useState(textSizeClass[0]);
+  const [textSize, setTextSize] = useState(textSizeClass[0]);
+  const [showBionicReader, setShowBionicReader] = useState(false);
 
   function onShowImagesToggle() {
     setShowImages(!showImages);
   }
   
   function onTextSizeToggle() {
-    setTextSizeToggle(textSizeClass[(textSizeClass.indexOf(textSizeToggle) + 1) % textSizeClass.length]);
+    setTextSize(textSizeClass[(textSizeClass.indexOf(textSize) + 1) % textSizeClass.length]);
+  }
+
+  function onBionicReaderToggle() {
+    setShowBionicReader(!showBionicReader);
   }
 
   return (
@@ -39,11 +44,12 @@ function StudentWorkView() {
           showImages={showImages} 
           onShowImagesToggle={onShowImagesToggle} 
           onTextSizeToggle={onTextSizeToggle} 
+          onBionicReaderToggle={onBionicReaderToggle}
         />
 
         {/* Story Content */}
         <div className="flex-1 bg-textGround p-4 rounded-lg shadow-md">
-          <Story showImages={showImages} textSizeToggle={textSizeToggle} />
+          <Story showImages={showImages} textSize={textSize} showBionicReader={showBionicReader} />
         </div>
 
       </div>

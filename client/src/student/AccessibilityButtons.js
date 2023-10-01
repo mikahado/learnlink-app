@@ -1,8 +1,8 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faVolumeUp, faAdjust, faTextHeight, faQuestionCircle, faEyeSlash, faEye } from '@fortawesome/free-solid-svg-icons';
+import { faVolumeUp, faAdjust, faTextHeight, faEyeSlash, faEye, faBook } from '@fortawesome/free-solid-svg-icons';
 
-function AccessibilityButtons({ showImages, onShowImagesToggle, onTextSizeToggle }) {
+function AccessibilityButtons({ showImages, onShowImagesToggle, onTextSizeToggle, onBionicReaderToggle }) {
 
     function handleShowImagesToggle() {
         onShowImagesToggle();
@@ -10,6 +10,10 @@ function AccessibilityButtons({ showImages, onShowImagesToggle, onTextSizeToggle
 
     function handleTextSizeToggle() {
         onTextSizeToggle();
+    }
+
+    function handleBionicReaderToggle() {
+        onBionicReaderToggle();
     }
 
     return (
@@ -41,9 +45,12 @@ function AccessibilityButtons({ showImages, onShowImagesToggle, onTextSizeToggle
                 <span>Adjust Contrast</span>
             </button>
 
-            <button className="w-24 h-24 flex flex-col justify-center items-center rounded-lg bg-textGround text-buttonTextGreen">
-                <FontAwesomeIcon icon={faQuestionCircle} size="lg" />
-                <span>Help</span>
+            <button 
+                onClick={handleBionicReaderToggle}
+                className="w-24 h-24 flex flex-col justify-center items-center rounded-lg bg-textGround text-buttonTextGreen"
+            >
+                <FontAwesomeIcon icon={faBook} size="lg" />
+                <span>Bionic Reader</span>
             </button>
         </div>
 
