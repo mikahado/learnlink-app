@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 // import { useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import StudentHome from './student/StudentHome';
 import StudentWorkView from './student/StudentWorkView';
 import TtsParent from './TtsParent'
@@ -24,16 +24,13 @@ const App = () => {
 
   return (
     <>
-      <Router>
-        <Routes>
-          <Route path="/students/:studentId" element={<StudentHome />} />
-          <Route path="/students/:studentId/lessons/:lessonId" element={<StudentWorkView />} />
-          <Route exact path="/" element={<TtsParent />} />
-          <Route exact path="/tts" element={<TextToSpeech teacher_voice_id={voiceId}/>} />
-          <Route exact path="/ttsadd" element={<TextToSpeechAdd onVoiceIdChange={handleVoiceIdChange}/>} />
-        </Routes>
-      </Router>
-
+      <Routes>
+        <Route path="/students/:studentId" element={<StudentHome />} />
+        <Route path="/students/:studentId/lessons/:lessonId" element={<StudentWorkView />} />
+        <Route exact path="/" element={<TtsParent />} />
+        <Route exact path="/tts" element={<TextToSpeech teacher_voice_id={voiceId}/>} />
+        <Route exact path="/ttsadd" element={<TextToSpeechAdd onVoiceIdChange={handleVoiceIdChange}/>} />
+      </Routes>
     </>
   );
 }

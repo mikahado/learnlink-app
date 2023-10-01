@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Story from './Story';
 import AccessibilityButtons from './AccessibilityButtons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faQuestionCircle } from '@fortawesome/free-solid-svg-icons';
+import { faQuestionCircle, faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
 function StudentWorkView() {
 
@@ -10,6 +10,7 @@ function StudentWorkView() {
   const [showImages, setShowImages] = useState(true);
   const [textSize, setTextSize] = useState(textSizeClass[0]);
   const [showBionicReader, setShowBionicReader] = useState(false);
+  const [showMoral, setShowMoral] = useState(false);
 
   function onShowImagesToggle() {
     setShowImages(!showImages);
@@ -50,7 +51,32 @@ function StudentWorkView() {
         {/* Story Content */}
         <div className="flex-1 bg-textGround p-4 rounded-lg shadow-md">
           <Story showImages={showImages} textSize={textSize} showBionicReader={showBionicReader} />
+
+          {/* Moral Container -- MAKE MODAL POP UP?*/}
+          {
+            showMoral && "This is the moral."
+          }
+
+          {/* Story Buttons */}
+          <div className="flex justify-between mx-auto p-4 w-full md:w-3/4 lg:w-1/2">
+            <button className="py-4 px-6 bg-buttonTextGreen text-white rounded hover:bg-teal-600">
+            <FontAwesomeIcon icon={faArrowLeft} size="lg" />  Back
+            </button>
+
+            <button 
+              onClick={() => setShowMoral(!showMoral)}
+              className="py-4 px-6 bg-buttonTextGreen text-white rounded hover:bg-teal-600"
+            >
+               Moral Generator
+            </button>
+
+            <button className="py-4 px-6 bg-buttonTextGreen text-white rounded hover:bg-teal-600">
+            Next <FontAwesomeIcon icon={faArrowRight} size="lg" />
+            </button>
+          </div>
+
         </div>
+
 
       </div>
 
