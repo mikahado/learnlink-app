@@ -45,3 +45,13 @@ To check if everything is working, visit the following URLs in your web browser:
 
 - React application: [http://127.0.0.1:4000](http://127.0.0.1:4000)
 - Flask application: [http://127.0.0.1:5555](http://127.0.0.1:5555)
+
+
+## AI Eleven Lab Setup
+```
+   pip install elevenlabs
+   ```
+
+   ```
+   brew install ffmpeg
+   ```
