@@ -1,25 +1,26 @@
 import React from 'react'
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Route, Routes } from 'react-router-dom';
 
+import TtsParent from './TtsParent'
 import TextToSpeech from './TextToSpeech'
-import TextToSpeechAdd2 from './TextToSpeechAdd'
+import TextToSpeechAdd from './TextToSpeechAdd'
 
 const App = () => {
 
-  // useEffect(() => {
-  //   fetch("/placeholders")
-  //     .then((r) => r.json())
-  //     .then((data) => console.log(data));
-  // }, []);
+  const [voiceId, setVoiceId] = useState("");
+
+  const handleVoiceIdChange = (newVoiceId) => {
+    console.log(newVoiceId)
+    setVoiceId(newVoiceId);
+  };
 
   return (
   <>
       <Routes>
-
-        <Route exact path="/tts" element={<TextToSpeech />} />
-        <Route exact path="/ttsadd" element={<TextToSpeechAdd2 />} />
-
+        <Route exact path="/" element={<TtsParent />} />
+        <Route exact path="/tts" element={<TextToSpeech teacher_voice_id={voiceId}/>} />
+        <Route exact path="/ttsadd" element={<TextToSpeechAdd onVoiceIdChange={handleVoiceIdChange}/>} />
       </Routes>
 
   </>

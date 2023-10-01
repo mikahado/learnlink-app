@@ -2,21 +2,23 @@ import React, { useState } from "react";
 import axios from "axios";
 import stories from './ReadingsTest';
 
-const TextToSpeech = ({teacher_voice_id}) => {
+const TextToSpeech = ({teacher_name, teacher_voice_id}) => {
 
   // pass down the voiceID of teacher. if it's null, then use default voiceID
+    console.log("teachervoiceid:", teacher_voice_id)
+    // const voiceId = teacher_voice_id ? teacher_voice_id : "flq6f7yk4E4fJM5XTYuZ";
+    const voiceId = teacher_voice_id ? teacher_voice_id : "EXAVITQu4vr4xnSDxMaL";
 
-    const voiceId = teacher_voice_id ? teacher_voice_id : "flq6f7yk4E4fJM5XTYuZ";
 
     // this variable MUST be named 'text' for the API to work
-    const text = "test"
+    const text = "The Hare and the Tortoise. . . -- A Hare was making fun of the Tortoise one day -- for being so slow..."
     // const text = stories[0];
    
-    const apiKey = process.env.ELEVENLABS_API_KEY;
+    const apiKey = process.env.REACT_APP_ELEVENLABS_API_KEY;
    
     const voiceSettings = {
       stability: 0.7,
-      similarity_boost: 0.5,
+      similarity_boost: 0.8,
     };
 
   const [loading, setLoading] = useState(false);
@@ -58,8 +60,9 @@ const TextToSpeech = ({teacher_voice_id}) => {
 
   return (
     <div>
+      <p>Teacher ID: {voiceId.slice(0,5).toUpperCase()}</p>
       <button onClick={startStreaming} disabled={loading}>
-        Start Streaming
+        Read to Me 🗣️
       </button>
       {error && <p>{error}</p>}
     </div>
