@@ -11,7 +11,7 @@ const TextToSpeech = ({teacher_name, teacher_voice_id}) => {
 
 
     // this variable MUST be named 'text' for the API to work
-    const text = "The Hare and the Tortoise. . . -- A Hare was making fun of the Tortoise one day -- for being so slow..."
+    const text = "The Hare and the Tortoise"
     // const text = stories[0];
    
     const apiKey = process.env.REACT_APP_ELEVENLABS_API_KEY;
