@@ -12,7 +12,7 @@ function StudentHome() {
 
     return (
         <div className="min-h-screen bg-secondaryPurple text-textBrown">
-            NAV
+            <div className="bg-primaryPurple">NAV</div>
             <StudentNotebook/>
         </div>
     )
