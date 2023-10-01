@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Story({ showImages }) {
+function Story({ showImages, textSizeToggle }) {
 
   return (
     <div className="container mx-auto p-2 sm:p-4 md:p-6 max-h-screen flex flex-col">
@@ -17,7 +17,7 @@ function Story({ showImages }) {
     </div>
     }
 
-        <div className="border p-4 mx-auto max-w-screen-md overflow-y-auto flex-grow">
+        <div className={`border p-4 mx-auto max-w-screen-md overflow-y-auto flex-grow ${textSizeToggle}`}>
         A Lion lay asleep in the forest, his great head resting on his paws. A timid little Mouse came upon him unexpectedly, and in her fright and haste to get away, ran across the Lion's nose. Roused from his nap, the Lion laid his huge paw angrily on the tiny creature to kill her.
 
 "Spare me!" begged the poor Mouse. "Please let me go and some day I will surely repay you."
