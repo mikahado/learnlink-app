@@ -20,6 +20,8 @@ function StudentWorkView() {
 
   return (
     <div className="min-h-screen bg-secondaryPurple text-textBrown">
+
+      {/* Top Nav */}
       <div className="bg-primaryPurple flex justify-between p-4">
         <button className="py-2 px-4 bg-textGround mx-8 rounded text-buttonTextGreen">Student Name</button>
         <button className="py-2 px-4 bg-textGround mx-8 rounded text-buttonTextGreen">
@@ -31,16 +33,21 @@ function StudentWorkView() {
 
 
       <div className="container mx-auto p-4 flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 max-w-7xl">
-  
-      {/* Story Content */}
-      <div className="flex-1 bg-textGround p-4 rounded-lg shadow-md">
-        <Story showImages={showImages} textSizeToggle={textSizeToggle} />
-      </div>
-  
-    <AccessibilityButtons showImages={showImages} onShowImagesToggle={onShowImagesToggle} onTextSizeToggle={onTextSizeToggle} />
-  
 
-</div>
+        {/* Accessibility Buttons */}
+        <AccessibilityButtons 
+          showImages={showImages} 
+          onShowImagesToggle={onShowImagesToggle} 
+          onTextSizeToggle={onTextSizeToggle} 
+        />
+
+        {/* Story Content */}
+        <div className="flex-1 bg-textGround p-4 rounded-lg shadow-md">
+          <Story showImages={showImages} textSizeToggle={textSizeToggle} />
+        </div>
+
+      </div>
+
     </div>
   );
 }
