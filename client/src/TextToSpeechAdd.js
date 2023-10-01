@@ -10,7 +10,6 @@ const TextToSpeechAdd = ( {onVoiceIdChange} ) => {
   const mediaRecorder = useRef(null);
   const audioChunks = useRef([]);
 
-
   // const handleVoiceIdChange = (voiceId) => {
   //   onVoiceIdChange(voiceId);
   // }
@@ -103,7 +102,7 @@ const TextToSpeechAdd = ( {onVoiceIdChange} ) => {
   return (
     <>
 
-    <h2>Voice Clone Instructions</h2>
+    <h2 >Voice Clone Instructions</h2>
 
     <p>1. Stay 6 inches away from the microphone.</p>
     <p>2. In your best storyteller voice, read the story below. </p> 

@@ -29,6 +29,7 @@ const TextToSpeech = ({teacher_name, teacher_voice_id}) => {
     setError("");
 
     const baseUrl = "https://api.elevenlabs.io/v1/text-to-speech";
+    
     const headers = {
       "Content-Type": "application/json",
       "xi-api-key": apiKey,

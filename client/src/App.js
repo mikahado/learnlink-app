@@ -13,7 +13,6 @@ const App = () => {
   const [voiceId, setVoiceId] = useState("");
 
   const handleVoiceIdChange = (newVoiceId) => {
-    console.log(newVoiceId)
     setVoiceId(newVoiceId);
   };
 
