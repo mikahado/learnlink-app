@@ -3,7 +3,7 @@ from flask import Flask, request, make_response, jsonify
 from flask_cors import CORS
 from flask_migrate import Migrate
 
-from models import db, Placeholder
+from models import db, Teacher,Student,Subject
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
@@ -21,13 +21,13 @@ db.init_app(app)
 # def index(id=0):
 #     return render_template("index.html")
 
-@app.route('/placeholder', methods=['GET'])
-def placeholder():
+@app.route('/teacher', methods=['GET'])
+def teacher():
     if request.method == 'GET':
-        placeholders = Placeholder.query.all()
+        teachers = Teacher.query.all()
 
         return make_response(
-            jsonify([placeholder.to_dict() for placeholder in placeholders]),
+            jsonify([teacher.to_dict() for teacher in teachers]),
             200,
         )
     
