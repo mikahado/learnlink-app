@@ -27,7 +27,7 @@ def upgrade():
     sa.Column('DOB', sa.DateTime(), nullable=True),
     sa.Column('school_name', sa.String(), nullable=True),
     sa.Column('classroom', sa.String(), nullable=True),
-    sa.Column('accomodations', sa.String(), nullable=True),
+    sa.Column('accommodations', sa.String(), nullable=True),
     sa.Column('progress', sa.Integer(), nullable=True),
     sa.Column('bio', sa.String(), nullable=True),
     sa.PrimaryKeyConstraint('id')
