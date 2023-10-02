@@ -42,7 +42,7 @@ class Teacher(db.Model, SerializerMixin):
     _password_hash = db.Column(db.String)
 
     # subject = db.Column(db.Integer, db.ForeignKey('subjects.id'), nullable=False)
-    students_teacher = db.Column(db.Integer, db.ForeignKey('students.id'), nullable=False)
+    students_teacher = db.Column(db.Integer, db.ForeignKey('students.id'), nullable=True)
     # student = db.Column('Student', backref='teacher', lazy=True)
 
     @hybrid_property
@@ -95,7 +95,7 @@ class Student(db.Model, SerializerMixin):
     progress = db.Column(db.Integer)
     bio = db.Column(db.String)
 
-    # teacher = db.Column(db.Integer, db.ForeignKey('teachers.id'), nullable=False)
+    # teacher_id = db.Column(db.Integer, db.ForeignKey('teachers.id'), nullable=False)
     teachers = db.relationship('Teacher', backref='students', lazy=True)
     # subject = db.relationship(db.Integer, db.ForeignKey('subjects.id'), nullable=False)
 
