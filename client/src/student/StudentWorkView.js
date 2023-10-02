@@ -11,7 +11,12 @@ function StudentWorkView() {
   const [textSize, setTextSize] = useState(textSizeClass[0]);
   const [showBionicReader, setShowBionicReader] = useState(false);
   const [showMoral, setShowMoral] = useState(false);
+  const [showPlayer, setShowPlayer] = useState(false);
 
+  function onShowPlayer() {
+    setShowPlayer(!showPlayer);
+  }
+  
   function onShowImagesToggle() {
     setShowImages(!showImages);
   }
@@ -46,6 +51,8 @@ function StudentWorkView() {
           onShowImagesToggle={onShowImagesToggle} 
           onTextSizeToggle={onTextSizeToggle} 
           onBionicReaderToggle={onBionicReaderToggle}
+          onShowPlayer={onShowPlayer}
+          showPlayer={showPlayer}
         />
 
         {/* Story Content */}

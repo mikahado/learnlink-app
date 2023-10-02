@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 // import { useEffect } from "react";
 import { Routes, Route } from 'react-router-dom';
 import StudentHome from './student/StudentHome';
@@ -15,12 +15,12 @@ const App = () => {
   //     .then((data) => console.log(data));
   // }, []);
 
-  const [voiceId, setVoiceId] = useState("");
+  // const [voiceId, setVoiceId] = useState("");
 
-  const handleVoiceIdChange = (newVoiceId) => {
-    console.log(newVoiceId)
-    setVoiceId(newVoiceId);
-  };
+  // const handleVoiceIdChange = (newVoiceId) => {
+  //   console.log(newVoiceId)
+  //   setVoiceId(newVoiceId);
+  // };
 
   return (
     <>
