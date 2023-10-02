@@ -1,17 +1,20 @@
 import React, { useState } from "react";
 import axios from "axios";
-import stories from './ReadingsTest';
+//import stories from './ReadingsTest';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faVolumeUp } from '@fortawesome/free-solid-svg-icons';
 
-const TextToSpeech = ({teacher_name, teacher_voice_id}) => {
+
+function TextToSpeech({ teacher_name, teacher_voice_id, text }) {
 
   // pass down the voiceID of teacher. if it's null, then use default voiceID
-    console.log("teachervoiceid:", teacher_voice_id)
-    // const voiceId = teacher_voice_id ? teacher_voice_id : "flq6f7yk4E4fJM5XTYuZ";
+  // console.log("teachervoiceid:", teacher_voice_id)
+  // const voiceId = teacher_voice_id ? teacher_voice_id : "flq6f7yk4E4fJM5XTYuZ";
     const voiceId = teacher_voice_id ? teacher_voice_id : "EXAVITQu4vr4xnSDxMaL";
 
 
     // this variable MUST be named 'text' for the API to work
-    const text = "The Hare and the Tortoise"
+    //const text = "The Hare and the Tortoise"
     // const text = stories[0];
    
     const apiKey = process.env.REACT_APP_ELEVENLABS_API_KEY;
@@ -60,13 +63,21 @@ const TextToSpeech = ({teacher_name, teacher_voice_id}) => {
 
   return (
     <div>
-      <p>Teacher ID: {voiceId.slice(0,5).toUpperCase()}</p>
-      <button onClick={startStreaming} disabled={loading}>
-        Read to Me 🗣️
+      {/* <p>Teacher ID: {voiceId.slice(0,5).toUpperCase()}</p> */}
+      <button 
+        className="w-24 h-24 flex flex-col justify-center items-center rounded-lg bg-textGround text-buttonTextGreen"
+        onClick={startStreaming} 
+        disabled={loading}
+      >
+        <FontAwesomeIcon icon={faVolumeUp} size="lg" />
+        <span>Read Aloud</span>
       </button>
+      {/* <button onClick={startStreaming} disabled={loading}>
+        Read to Me 🗣️
+      </button> */}
       {error && <p>{error}</p>}
     </div>
-  );
-};
+  )
+}
 
 export default TextToSpeech;
