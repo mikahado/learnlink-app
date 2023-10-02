@@ -1,19 +1,20 @@
 import os
-from flask import Flask, request, make_response, jsonify
-from flask_cors import CORS
+from flask import Flask, request, make_response, jsonify, session
+from flask_cors import CORS, cross_origin
 from flask_migrate import Migrate
+from flask_restful import Api, Resource
 
 from models import db, Teacher,Student,Subject
+from config import app, db, api
+# app = Flask(__name__)
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
+# app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+# app.json.compact = False
 
-app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.json.compact = False
+# CORS(app)
+# migrate = Migrate(app, db)
 
-CORS(app)
-migrate = Migrate(app, db)
-
-db.init_app(app)
+# db.init_app(app)
 
 # Basic Route for setup 
 # @app.route('/')
@@ -21,20 +22,99 @@ db.init_app(app)
 # def index(id=0):
 #     return render_template("index.html")
 
-@app.route('/teacher', methods=['GET'])
-def teacher():
-    if request.method == 'GET':
-        teachers = Teacher.query.all()
+# @app.route('/teacher', methods=['GET'])
+# def teacher():
+#     if request.method == 'GET':
+#         teachers = Teacher.query.all()
 
-        return make_response(
-            jsonify([teacher.to_dict() for teacher in teachers]),
-            200,
-        )
+#         return make_response(
+#             jsonify([teacher.to_dict() for teacher in teachers]),
+#             200,
+#         )
     
-    return make_response(
-        jsonify({"text": "Method Not Allowed"}),
-        405,
-    ) 
+#     return make_response(
+#         jsonify({"text": "Method Not Allowed"}),
+#         405,
+#     ) 
+class ClearSession(Resource): 
+    def delete(self): 
+        session['teacher_id'] = None 
+        return {}, 204 
+
+class Signup(Resource): 
+    def post(self): 
+        username = request.get_json()['username'] 
+        teacher = Teacher.query.filter(Teacher.username == username).first()
+        password = request.get_json()['password'] 
+        if username and password and not teacher: 
+            new_user = Teacher(username=username) 
+            new_user.password_hash = password 
+            db.session.add(new_user) 
+            db.session.commit() 
+            session['teacher_id'] = new_user.id 
+            return new_user.to_dict(),201 
+         
+        return {'error': '422 Unprocessable Entity'}, 422 
+    
+class CheckSession(Resource): 
+    def get(self): 
+        print(session)
+        if session.get('teacher_id'): 
+            user = Teacher.query.filter(Teacher.id == session['teacher_id']).first() 
+            return user.to_dict(),200 
+        return {}, 204 
+    
+class Login(Resource): 
+    def post(self): 
+        username = request.get_json()['username'] 
+        password = request.get_json()['password'] 
+        teacher = Teacher.query.filter(Teacher.username == username).first() 
+        if teacher.authenticate(password): 
+            session['teacher_id'] = teacher.id 
+            print(session)
+            return teacher.to_dict(), 200 
+        
+        return {'error': '401 Unauthorized'}, 401 
+    
+class Logout(Resource): 
+    def delete(self): 
+        session['teacher_id'] = None 
+        return {}, 204 
+    
+class Teachers(Resource):
+    def get(self):
+        teachers_all = [teachers.to_dict() for teachers in Teacher.query.all()] 
+        response = make_response( 
+            teachers_all, 
+            200, 
+        ) 
+        return response
+    
+class Students(Resource):
+    def get(self):
+        students_all = [students.to_dict() for students in Student.query.all()] 
+        response = make_response( 
+            students_all, 
+            200, 
+        ) 
+        return response
+    
+class Subjects(Resource):
+    def get(self):
+        subjects_all = [subjects.to_dict() for subjects in Subject.query.all()] 
+        response = make_response( 
+            subjects_all, 
+            200, 
+        ) 
+        return response
+
+api.add_resource(Signup, '/signup', endpoint='signup') 
+api.add_resource(Login, '/login', endpoint='login') 
+api.add_resource(Logout, '/logout', endpoint='logout') 
+api.add_resource(CheckSession, '/check_session', endpoint='check_session') 
+api.add_resource(Teachers, '/teachers', endpoint='teachers') 
+api.add_resource(Students, '/students', endpoint='students') 
+api.add_resource(Subjects, '/subjects', endpoint='subjects') 
 
 if __name__ == '__main__':
     app.run(port=5555)
