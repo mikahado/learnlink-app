@@ -15,10 +15,20 @@ db = SQLAlchemy()
 #     def __repr__(self):
 #         return f'<Placeholder {self.title}>'
     
+students_rel = db.Table('students_subject',
+    db.Column('student_id', db.Integer, db.ForeignKey('students.id'), primary_key=True),
+    db.Column('subject_id', db.Integer, db.ForeignKey('subjects.id'), primary_key=True)
+)
+teachers_rel = db.Table('teachers_subject',
+    db.Column('teacher_id', db.Integer, db.ForeignKey('teachers.id'), primary_key=True),
+    db.Column('subject_id', db.Integer, db.ForeignKey('subjects.id'), primary_key=True)
+)
+
 class Teacher(db.Model, SerializerMixin):
     __tablename__ = 'teachers'
 
-    serialize_rules = ('-students.teacher','-subjects.teacher')
+    # serialize_rules = ('-students.teacher','-subjects.teacher')
+    serialize_rules = ('-students.teacher',)
 
     id = db.Column(db.Integer, primary_key=True)
     first_name = db.Column(db.String)
@@ -28,11 +38,12 @@ class Teacher(db.Model, SerializerMixin):
     school_name = db.Column(db.String)
     classroom = db.Column(db.String)
     pin = db.Column(db.Integer)
-    voice = db.Column(db.Integer)
+    voice_id = db.Column(db.String)
     _password_hash = db.Column(db.String)
 
-    subject = db.Column(db.Integer, db.ForeignKey('subjects.id'), nullable=False)
-    student = db.relationship('Student', backref='teacher', lazy=True)
+    # subject = db.Column(db.Integer, db.ForeignKey('subjects.id'), nullable=False)
+    students_teacher = db.Column(db.Integer, db.ForeignKey('students.id'), nullable=False)
+    # student = db.Column('Student', backref='teacher', lazy=True)
 
     @hybrid_property
     def password_hash(self):
@@ -70,7 +81,7 @@ class Teacher(db.Model, SerializerMixin):
 class Student(db.Model, SerializerMixin):
     __tablename__ = 'students'
 
-    serialize_rules = ('-subjects.student',)
+    # serialize_rules = ('-subjects.student',)
 
     id = db.Column(db.Integer, primary_key=True)
     first_name = db.Column(db.String)
@@ -84,8 +95,9 @@ class Student(db.Model, SerializerMixin):
     progress = db.Column(db.Integer)
     bio = db.Column(db.String)
 
-    teacher = db.Column(db.Integer, db.ForeignKey('teachers.id'), nullable=False)
-    subject = db.Column(db.Integer, db.ForeignKey('subjects.id'), nullable=False)
+    # teacher = db.Column(db.Integer, db.ForeignKey('teachers.id'), nullable=False)
+    teachers = db.relationship('Teacher', backref='students', lazy=True)
+    # subject = db.relationship(db.Integer, db.ForeignKey('subjects.id'), nullable=False)
 
     
     @validates('bio')
@@ -101,11 +113,12 @@ class Student(db.Model, SerializerMixin):
 class Subject(db.Model, SerializerMixin):
     __tablename__ = 'subjects'
 
-    serialize_rules = ('-teacher.subjects','-student.subjects')
+    # serialize_rules = ('-teacher.subjects','-student.subjects')
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String)
     content = db.Column(db.String)
     
-    student = db.relationship('Student', backref='subject', lazy=True)
-    teacher = db.relationship('Student', backref='subject', lazy=True)
+    students_subject = db.relationship('Student', secondary=students_rel,backref=db.backref('subjects', lazy='dynamic'))
+    teachers_subject  = db.relationship('Teacher', secondary=teachers_rel,backref=db.backref('subjects', lazy='dynamic'))
+    # teacher = db.relationship('Student', backref='subject', lazy=True)
