@@ -91,7 +91,7 @@ class Student(db.Model, SerializerMixin):
     DOB = db.Column(db.DateTime)
     school_name = db.Column(db.String)
     classroom = db.Column(db.String)
-    accomodations = db.Column(db.String)
+    accommodations = db.Column(db.String)
     progress = db.Column(db.Integer)
     bio = db.Column(db.String)
 
