@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Story from './Story';
 import AccessibilityButtons from './AccessibilityButtons';
+import AudioPlayer from './AudioPlayer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faQuestionCircle, faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
@@ -12,9 +13,11 @@ function StudentWorkView() {
   const [showBionicReader, setShowBionicReader] = useState(false);
   const [showMoral, setShowMoral] = useState(false);
   const [showPlayer, setShowPlayer] = useState(false);
+  const [audio, setAudio] = useState(null);
 
-  function onShowPlayer() {
+  function onSetAudioPlayer(aud) {
     setShowPlayer(!showPlayer);
+    setAudio(aud);
   }
   
   function onShowImagesToggle() {
@@ -51,12 +54,16 @@ function StudentWorkView() {
           onShowImagesToggle={onShowImagesToggle} 
           onTextSizeToggle={onTextSizeToggle} 
           onBionicReaderToggle={onBionicReaderToggle}
-          onShowPlayer={onShowPlayer}
+          onSetAudioPlayer={onSetAudioPlayer}
           showPlayer={showPlayer}
         />
 
         {/* Story Content */}
         <div className="flex-1 bg-textGround p-4 rounded-lg shadow-md">
+          
+          {/* Audio Player */}
+          {showPlayer && <AudioPlayer audio={audio} />}
+
           <Story showImages={showImages} textSize={textSize} showBionicReader={showBionicReader} />
 
           {/* Moral Container -- MAKE MODAL POP UP?*/}
