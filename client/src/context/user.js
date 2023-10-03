@@ -5,10 +5,10 @@ const UserContext = React.createContext();
 
 const UserProvider = ({ children }) => {
   const [user, setUser] = useState({});
+  const [loggedIn, setLoggedIn] = useState(false);
 
-  // Function to fetch user data from the backend
-  const fetchUserData = () => {
-    fetch('/check_session') // Assuming this endpoint checks the user's session
+  useEffect(() => {
+    fetch('/check_session') 
       .then((response) => {
         if (response.status === 200) {
           return response.json();
@@ -23,12 +23,11 @@ const UserProvider = ({ children }) => {
       .catch((error) => {
         console.error('Error fetching user data:', error);
       });
-  };
+}, [loggedIn]);
+  
 
   // Load user data when the component mounts
-  useEffect(() => {
-    fetchUserData();
-  }, []);
+
 
   // Function to log the user out
   const logout = () => {
@@ -46,10 +45,14 @@ const UserProvider = ({ children }) => {
   };
 
   return (
-    <UserContext.Provider value={{ user, fetchUserData, logout }}>
+    <UserContext.Provider 
+    value={{ 
+        user, 
+        logout 
+    }}>
       {children}
     </UserContext.Provider>
   );
 };
 
-export default UserProvider;
+export { UserContext, UserProvider };

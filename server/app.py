@@ -69,8 +69,8 @@ class StudentSignup(Resource):
             last_name = request.get_json()['last_name'],
             username = request.get_json()['username'],
             DOB = request.get_json()['DOB'],
-            school_name = request.get_json()['pin'],
-            classroom = request.get_json()['pin'],
+            school_name = request.get_json()['school_name'],
+            classroom = request.get_json()['classroom'],
             accommodations = request.get_json()['accommodations']
         )
         student = Student.query.filter(Student.username == student_info.username).first()

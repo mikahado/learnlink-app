@@ -3,32 +3,13 @@ from sqlalchemy_serializer import SerializerMixin
 from config import db, bcrypt
 from sqlalchemy.orm import validates 
 from sqlalchemy.ext.hybrid import hybrid_property 
+from sqlalchemy import ForeignKey
+
 
 db = SQLAlchemy()
 
-# class Placeholder(db.Model, SerializerMixin):
-#     __tablename__ = 'placeholders'
-
-#     id = db.Column(db.Integer, primary_key=True)
-#     title = db.Column(db.String)
-
-#     def __repr__(self):
-#         return f'<Placeholder {self.title}>'
-    
-students_rel = db.Table('students_subject',
-    db.Column('student_id', db.Integer, db.ForeignKey('students.id'), primary_key=True),
-    db.Column('subject_id', db.Integer, db.ForeignKey('subjects.id'), primary_key=True)
-)
-teachers_rel = db.Table('teachers_subject',
-    db.Column('teacher_id', db.Integer, db.ForeignKey('teachers.id'), primary_key=True),
-    db.Column('subject_id', db.Integer, db.ForeignKey('subjects.id'), primary_key=True)
-)
-
 class Teacher(db.Model, SerializerMixin):
     __tablename__ = 'teachers'
-
-    # serialize_rules = ('-students.teacher','-subjects.teacher')
-    serialize_rules = ('-students.teacher',)
 
     id = db.Column(db.Integer, primary_key=True)
     first_name = db.Column(db.String)
@@ -41,9 +22,8 @@ class Teacher(db.Model, SerializerMixin):
     voice_id = db.Column(db.String)
     _password_hash = db.Column(db.String)
 
-    # subject = db.Column(db.Integer, db.ForeignKey('subjects.id'), nullable=False)
-    students_teacher = db.Column(db.Integer, db.ForeignKey('students.id'), nullable=True)
-    # student = db.Column('Student', backref='teacher', lazy=True)
+    # Define the many-to-many relationship with subjects
+    subjects = db.relationship('Subject', secondary='teacher_subjects', back_populates='teachers')
 
     @hybrid_property
     def password_hash(self):
@@ -70,18 +50,15 @@ class Teacher(db.Model, SerializerMixin):
     
     @validates('pin')
     def validate_name(self, key, pin):
-        # pins = db.session.query(Teacher.pin).all()
         if len(str(pin)) != 4:
             raise ValueError("Pin must be four digits")
         return pin
 
     def __repr__(self):
         return f'<Teacher {self.title}>'
-    
+
 class Student(db.Model, SerializerMixin):
     __tablename__ = 'students'
-
-    # serialize_rules = ('-subjects.student',)
 
     id = db.Column(db.Integer, primary_key=True)
     first_name = db.Column(db.String)
@@ -95,30 +72,36 @@ class Student(db.Model, SerializerMixin):
     progress = db.Column(db.Integer)
     bio = db.Column(db.String)
 
-    # teacher_id = db.Column(db.Integer, db.ForeignKey('teachers.id'), nullable=False)
-    teachers = db.relationship('Teacher', backref='students', lazy=True)
-    # subject = db.relationship(db.Integer, db.ForeignKey('subjects.id'), nullable=False)
+    # Define the many-to-many relationship with subjects
+    subjects = db.relationship('Subject', secondary='student_subjects', back_populates='students')
 
-    
     @validates('bio')
     def validate_name(self, key, bio):
-        # pins = db.session.query(Teacher.pin).all()
         if len(str(bio)) > 250:
             raise ValueError("Bio must be less than 250 characters")
         return bio
 
     def __repr__(self):
         return f'<Student {self.title}>'
-    
+
 class Subject(db.Model, SerializerMixin):
     __tablename__ = 'subjects'
-
-    # serialize_rules = ('-teacher.subjects','-student.subjects')
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String)
     content = db.Column(db.String)
-    
-    students_subject = db.relationship('Student', secondary=students_rel,backref=db.backref('subjects', lazy='dynamic'))
-    teachers_subject  = db.relationship('Teacher', secondary=teachers_rel,backref=db.backref('subjects', lazy='dynamic'))
-    # teacher = db.relationship('Student', backref='subject', lazy=True)
+
+    # Define the many-to-many relationship with teachers and students
+    teachers = db.relationship('Teacher', secondary='teacher_subjects', back_populates='subjects')
+    students = db.relationship('Student', secondary='student_subjects', back_populates='subjects')
+
+# Define the many-to-many association tables
+teacher_subjects = db.Table('teacher_subjects',
+    db.Column('teacher_id', db.Integer, db.ForeignKey('teachers.id'), primary_key=True),
+    db.Column('subject_id', db.Integer, db.ForeignKey('subjects.id'), primary_key=True)
+)
+
+student_subjects = db.Table('student_subjects',
+    db.Column('student_id', db.Integer, db.ForeignKey('students.id'), primary_key=True),
+    db.Column('subject_id', db.Integer, db.ForeignKey('subjects.id'), primary_key=True)
+)
