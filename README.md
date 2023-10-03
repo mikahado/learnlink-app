@@ -79,4 +79,12 @@ Flask application: [http://127.0.0.1:5555](http://127.0.0.1:5555)
 
 ### Testing and Deployment
 
-- **Web Browsers:** Both frontend and backend applications can be tested in web browsers.
+
+## AI Eleven Lab Setup
+```
+   pip install elevenlabs
+   ```
+
+   ```
+   brew install ffmpeg
+   ```

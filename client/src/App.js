@@ -7,6 +7,15 @@ import StudentProfile from "./teacher/studentprofile";
 import SignUp from "./teacher/signup";
 
 import React from "react";
+import React from 'react'
+// import { useEffect } from "react";
+import { Routes, Route } from 'react-router-dom';
+import StudentHome from './student/StudentHome';
+import StudentWorkView from './student/StudentWorkView';
+import NavBar from './student/NavBar';
+// import TtsParent from './TtsParent'
+// import TextToSpeech from './TextToSpeech'
+// import TextToSpeechAdd from './TextToSpeechAdd'
 
 const App = () => {
   useEffect(() => {
@@ -15,17 +24,25 @@ const App = () => {
       .then((data) => console.log(data));
   }, []);
 
+  // const [voiceId, setVoiceId] = useState("");
+
+  // const handleVoiceIdChange = (newVoiceId) => {
+  //   console.log(newVoiceId)
+  //   setVoiceId(newVoiceId);
+  // };
+
   return (
-    <div className="font-inter">
+    <>
+    <NavBar />
       <Routes>
-        <Route exact path="/login" element={<LoginTeacher/>}/>
-        <Route exact path="/classpage" element={<ClassPage/>}/>
-        <Route exact path="/newstudent" element={<StudentSetUp/>}/>
-        <Route exact path="/studentprofile" element={<StudentProfile/>}/>
-        <Route exact path="/signup" element={<SignUp/>}/>
+        <Route path="/students/:studentId" element={<StudentHome />} />
+        <Route path="/students/:studentId/lessons/:lessonId" element={<StudentWorkView />} />
+        {/* <Route exact path="/" element={<TtsParent />} />
+        <Route exact path="/tts" element={<TextToSpeech teacher_voice_id={voiceId}/>} />
+        <Route exact path="/ttsadd" element={<TextToSpeechAdd onVoiceIdChange={handleVoiceIdChange}/>} /> */}
       </Routes>
-    </div>
+    </>
   );
-};
+}
 
 export default App;
