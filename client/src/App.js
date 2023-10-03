@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState,createContext } from "react";
 import { Route, Routes } from "react-router-dom";
 import LoginTeacher from "./teacher/login";
 import ClassPage from "./teacher/classpage";
@@ -14,15 +14,17 @@ import NavBar from './student/NavBar';
 import TtsParent from '../src/TtsParent.js'
 import TextToSpeech from '../src/TtsParent.js'
 import TextToSpeechAdd from '../src/TtsParent.js'
+export const TeacherContext = createContext()
 
 const App = () => {
-  useEffect(() => {
-    fetch("/placeholders")
-      .then((r) => r.json())
-      .then((data) => console.log(data));
-  }, []);
+  // useEffect(() => {
+  //   fetch("/placeholders")
+  //     .then((r) => r.json())
+  //     .then((data) => console.log(data));
+  // }, []);
 
   const [voiceId, setVoiceId] = useState("");
+  const [teacher,setTeacher] = useState([]);
 
   const handleVoiceIdChange = (newVoiceId) => {
     console.log(newVoiceId)
@@ -30,6 +32,7 @@ const App = () => {
   };
 
   return (
+    <TeacherContext.Provider value={[teacher,setTeacher]}>
     <div>
       <Routes>
         <Route path="/students/:studentId" element={<StudentHome />} />
@@ -42,6 +45,7 @@ const App = () => {
         <Route exact path="/recordvoice" element={<TtsParent />} />
       </Routes>
     </div>
+      </TeacherContext.Provider>
   );
 }
 

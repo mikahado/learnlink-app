@@ -1,19 +1,42 @@
 import { Link } from "react-router-dom";
+import React, { useContext,useState,useEffect } from "react";
+import { TeacherContext } from "../App";
 
 function SignUp() {
   const buttonClassname =
     "border border-black rounded-lg px-2 w-48 sm:w-24 mt-20 bg-ctaGreen";
+
+  const [teacher,setTeacher] = useContext(TeacherContext)
 
   function handleFormSubmit(e) {
     e.preventDefault();
     const teacherInfo = {
         "First Name": e.target["first-name"].value,
         "Last Name": e.target["last-name"].value,
-        Email: e.target["email"].value,
-        State: e.target["state"].value,
-        Password: e.target["password"].value,
-        School: e.target["school"].value,
+        email: e.target["email"].value,
+        username: e.target["username"].value,
+        password: e.target["password"].value,
+        school: e.target["school"].value,
     };
+      // fetch("/teachers/signup", {
+      //       method: "POST",
+      //       headers: {
+      //         "Content-Type": "application/json",
+      //       },
+      //       body: JSON.stringify({ 
+      //         "first_name": teacherInfo['First Name'],
+      //         "last_name": teacherInfo['Last Name'],
+      //         "email": teacherInfo.email,
+      //         "username": teacherInfo.username,
+      //         "school": teacherInfo.school,
+      //         "password": teacherInfo.password,
+      //        }),
+      //     })
+      //   .then(r=>r.json())
+      //   .then(data=>{
+      //       console.log(data)
+      //       setTeacher(teacherInfo)
+      //   });
     e.target.reset();
     console.log(teacherInfo);
   }
@@ -33,7 +56,7 @@ function SignUp() {
               placeholder="First Name"
             />
             <input name="email" className={inputCss} placeholder="Email" />
-            <input name="state" className={inputCss} placeholder="State" />
+            <input name="username" className={inputCss} placeholder="Username" />
           </div>
           <div className="col-span-1 space-y-8">
             <input
