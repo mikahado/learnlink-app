@@ -3,14 +3,15 @@ import axios from "axios";
 //import stories from './ReadingsTest';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faVolumeUp } from '@fortawesome/free-solid-svg-icons';
+import Play from "./play.png"
 
 
-function TextToSpeech({ teacher_name, teacher_voice_id, text, onSetAudioPlayer, showPlayer, onError }) {
+function TextToSpeech({ teacher_name, teacher_voice_id, text, onSetAudioPlayer, showPlayer }) {
 
   // pass down the voiceID of teacher. if it's null, then use default voiceID
   // console.log("teachervoiceid:", teacher_voice_id)
   const voiceId = teacher_voice_id ? teacher_voice_id : "flq6f7yk4E4fJM5XTYuZ";
-  //const voiceId = teacher_voice_id ? teacher_voice_id : "EXAVITQu4vr4xnSDxMaL";
+
    
   const apiKey = process.env.REACT_APP_ELEVENLABS_API_KEY;
    
@@ -19,12 +20,20 @@ function TextToSpeech({ teacher_name, teacher_voice_id, text, onSetAudioPlayer, 
       similarity_boost: 0.8,
     };
 
+  
+
   const [loading, setLoading] = useState(false);
+  const [audio, setAudio] = useState(null)
+
+  function onSetAudioPlayer(aud) {
+    setAudio(aud);
+  }
+  
 
   const loadAudio = async () => {
 
     setLoading(true);
-    onError("");
+ 
 
     const baseUrl = "https://api.elevenlabs.io/v1/text-to-speech";
     const headers = {
@@ -48,30 +57,26 @@ function TextToSpeech({ teacher_name, teacher_voice_id, text, onSetAudioPlayer, 
         onSetAudioPlayer(audio);
         
       } else {
-        onError("Uh oh! Ask your teacher for help.");
+        alert("Oops! Please refresh the page and try again!")
       }
     } catch (error) {
-      onError("Uh oh! Ask your teacher for help.");
+      alert(error)
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div>
-      {/* <p>Teacher ID: {voiceId.slice(0,5).toUpperCase()}</p> */}
-      
-      <button 
-        className="w-24 h-24 flex flex-col justify-center items-center rounded-lg bg-textGround text-buttonTextGreen"
-        onClick={() => onSetAudioPlayer(new Audio('/sample-12s.mp3'))} //loadAudio //() => onSetAudioPlayer(new Audio('/sample-12s.mp3'))
-        disabled={loading}
-      >
-        {showPlayer ? "Close" : <FontAwesomeIcon icon={faVolumeUp} size="lg" />}
-        {showPlayer ? "" : <span>Read Aloud</span>}
-      </button>
+    
+      {/* <p>Teacher ID: {voiceId.slice(0,5).toUpperCase()}</p> */},
+      <div className="w-20 h-20 mt-8 rounded-2xl bg-secondaryPurple flex justify-center" onClick={loadAudio} 
+        disabled={loading}>
+        <img src={Play} className="object-scale-down"/>
+        </div>
       
       
-    </div>
+      
+    
   )
 }
 

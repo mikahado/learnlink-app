@@ -1,6 +1,6 @@
 function StudentSetUp() {
   const inputCss =
-    "block font-thin indent-2 border rounded-lg  placeholder-black border-black bg-slate-300 lg:w-80 md:w-48 sm:w-40";
+  "block font-thin indent-2 border rounded-2xl placeholder-black border-black bg-inactiveGray h-[64px] lg:w-80 xl:w-280 md:w-48 sm:w-40";
   const buttonClassname =
     "border border-black rounded-lg px-2 <w-48></w-48> sm:w-24";
 
@@ -36,26 +36,40 @@ function StudentSetUp() {
   }
 
   return (
-    <div className="font-inter bg-secondaryPurple bg-cover h-screen">
+    <div className="font-inter bg-secondaryPurple ">
       <nav className=" p-4 bg-primaryPurple">
         <div className="container mx-auto flex justify-between items-center">
           <h1 className="text-3xl font-inter">New Student</h1>
         </div>
       </nav>
 
-      <div className="container mx-auto py-20 mt-10 font-thin bg-white rounded-3xl">
+      <div className="container mx-auto px-4 mt-10 font-thin bg-white rounded-3xl py-10 xsm:w-4/5 xsm:h-[80vh] sm:h-[90vh] md:h-[80vh] lg:h-[70vh] xl:h-[60vh]">
         <form onSubmit={handleFormSubmit}>
-          <div className="grid grid-cols-4 grid-rows-2 place-items-center m-0">
-            <div className="col-span-2 row-span-3">
-              <input name="first-name" className={inputCss} placeholder="First Name"/>
-              <input name="last-initial" className={inputCss} placeholder="Last Initial"/>
-              <input name="age" className={inputCss} placeholder="Age" />
-            </div>
-            <div className="col-span-2 row-span-3">
-              <input name="grade" className={inputCss} placeholder="Grade"/>
-              <input type="password" name="pin" className={inputCss} placeholder="Pin #"/>
-            </div>
+        <div className="grid grid-cols-2 place-items-center m-0">
+          <div className="col-span-1 space-y-4">
+            <input
+              name="first-name"
+              className={inputCss}
+              placeholder="First Name"
+            />
+            <input name="email" className={inputCss} placeholder="Email" />
+            <input name="state" className={inputCss} placeholder="State" />
           </div>
+          <div className="col-span-1 space-y-4">
+            <input
+              name="last-name"
+              className={inputCss}
+              placeholder="Last Name"
+            />
+            <input
+              name="password"
+              type="password"
+              className={inputCss}
+              placeholder="Password"
+            />
+            <input name="school" className={inputCss} placeholder="School" />
+          </div>
+        </div>
 
           <div className="grid grid-cols-4 grid-rows-2 place-items-center mt-10">
             <div className="col-span-2 row-span-3">
@@ -111,7 +125,7 @@ function StudentSetUp() {
             <textarea
               name="notes"
               placeholder="Add your notes here..."
-              className="container mx-auto border break-all border-black rounded-xl outline-none w-1/2 h-[208px]"
+              className="container mx-auto border break-all border-black rounded-xl outline-none w-1/2 h-[150px]"
               type="text"
             />
           </div>
