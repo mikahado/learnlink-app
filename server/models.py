@@ -4,7 +4,7 @@ from config import db, bcrypt
 from sqlalchemy.orm import validates 
 from sqlalchemy.ext.hybrid import hybrid_property 
 
-db = SQLAlchemy()
+# db = SQLAlchemy()
 
 # class Placeholder(db.Model, SerializerMixin):
 #     __tablename__ = 'placeholders'
