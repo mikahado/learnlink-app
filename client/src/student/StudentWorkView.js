@@ -60,7 +60,11 @@ function StudentWorkView() {
         <div className="flex-1 bg-textGround p-4 rounded-lg shadow-md">
 
           {/* Errors Container */}
-          <div className="bg-errorRed text-white flex items-center justify-center rounded-lg py-4"> {error}</div>
+          { error &&
+            <div className="bg-errorRed text-white flex items-center justify-center rounded-lg py-4"> 
+            {error}
+            </div>
+          }
           
           {/* Audio Player */}
           {showPlayer && <AudioPlayer audio={audio} />}
