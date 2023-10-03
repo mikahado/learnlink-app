@@ -2,7 +2,7 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAdjust, faTextHeight, faEyeSlash, faEye, faBook } from '@fortawesome/free-solid-svg-icons';
 import TextToSpeech from "./TextToSpeech";
-import stories from "../ReadingsTest";
+import stories from "../Readings";
 
 function AccessibilityButtons({ showImages, onShowImagesToggle, onTextSizeToggle, onBionicReaderToggle, onSetAudioPlayer, showPlayer, onError }) {
 
