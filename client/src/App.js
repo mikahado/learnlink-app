@@ -6,6 +6,12 @@ import StudentWorkView from './student/StudentWorkView';
 // import TtsParent from './TtsParent'
 // import TextToSpeech from './TextToSpeech'
 // import TextToSpeechAdd from './TextToSpeechAdd'
+import { useEffect } from "react";
+import { Route, Routes } from "react-router-dom";
+import LoginTeacher from "./teacher/login";
+import ClassPage from "./teacher/classpage";
+
+import React from "react";
 
 const App = () => {
 
@@ -25,6 +31,8 @@ const App = () => {
   return (
     <>
       <Routes>
+        <Route exact path="/login" element={<LoginTeacher/>}/>
+        <Route exact path="/classpage" element={<ClassPage/>}/>
         <Route path="/students/:studentId" element={<StudentHome />} />
         <Route path="/students/:studentId/lessons/:lessonId" element={<StudentWorkView />} />
         {/* <Route exact path="/" element={<TtsParent />} />
