@@ -72,8 +72,8 @@ function TextToSpeech({ teacher_name, teacher_voice_id, text, onSetAudioPlayer, 
         onClick={() => onSetAudioPlayer(new Audio('/sample-12s.mp3'))} 
         disabled={loading}
       >
-        {showPlayer ? "close" : <FontAwesomeIcon icon={faVolumeUp} size="lg" />}
-        {showPlayer ? "close" : <span>Read Aloud</span>}
+        {showPlayer ? "Close" : <FontAwesomeIcon icon={faVolumeUp} size="lg" />}
+        {showPlayer ? "" : <span>Read Aloud</span>}
       </button>
       {/* <button onClick={startStreaming} disabled={loading}>
         Read to Me 🗣️
