@@ -14,7 +14,7 @@ function ParentComponent() {
   return (
     <div>
       {/* Render TextToSpeech component and pass the voiceId */}
-      <TextToSpeech teacher_name="Teacher Name" teacher_voice_id={voiceId} text={"hi"} />
+      {/* <TextToSpeech teacher_name="Teacher Name" teacher_voice_id={voiceId} text={"hi"} /> */}
 
       {/* Render TextToSpeechAdd component and pass the callback function */}
       <TextToSpeechAdd onVoiceIdChange={handleVoiceIdChange} />
