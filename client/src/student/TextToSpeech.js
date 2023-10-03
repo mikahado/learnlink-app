@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faVolumeUp } from '@fortawesome/free-solid-svg-icons';
 
 
-function TextToSpeech({ teacher_name, teacher_voice_id, text, onSetAudioPlayer, showPlayer }) {
+function TextToSpeech({ teacher_name, teacher_voice_id, text, onSetAudioPlayer, showPlayer, onError }) {
 
   // pass down the voiceID of teacher. if it's null, then use default voiceID
   // console.log("teachervoiceid:", teacher_voice_id)
@@ -20,12 +20,11 @@ function TextToSpeech({ teacher_name, teacher_voice_id, text, onSetAudioPlayer, 
     };
 
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
 
   const loadAudio = async () => {
 
     setLoading(true);
-    setError("");
+    onError("");
 
     const baseUrl = "https://api.elevenlabs.io/v1/text-to-speech";
     const headers = {
@@ -49,10 +48,10 @@ function TextToSpeech({ teacher_name, teacher_voice_id, text, onSetAudioPlayer, 
         onSetAudioPlayer(audio);
         
       } else {
-        setError("Uh oh! Ask your teacher for help.");
+        onError("Uh oh! Ask your teacher for help.");
       }
     } catch (error) {
-      setError("Uh oh! Ask your teacher for help.");
+      onError("Uh oh! Ask your teacher for help.");
     } finally {
       setLoading(false);
     }
@@ -70,7 +69,7 @@ function TextToSpeech({ teacher_name, teacher_voice_id, text, onSetAudioPlayer, 
         {showPlayer ? "" : <span>Read Aloud</span>}
       </button>
       
-      {error && <p>{error}</p>}
+      
     </div>
   )
 }
