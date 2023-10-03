@@ -4,8 +4,7 @@ function LoginTeacher() {
   const inputCss =
     "block font-thin indent-2 border rounded-2xl placeholder-black border-black bg-white h-[64px] lg:w-80 xl:w-280 md:w-48 sm:w-40";
 
-    const signUp =
-    "border border-black rounded-lg px-2 w-48 sm:w-24 mt-20 bg-ctaGreen";
+    
 
 
   return (
