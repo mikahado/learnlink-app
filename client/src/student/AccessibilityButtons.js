@@ -21,7 +21,7 @@ function AccessibilityButtons({ showImages, onShowImagesToggle, onTextSizeToggle
     return (
         <div className="flex flex-row md:flex-col justify-start md:space-y-4 items-center space-x-2 md:space-x-0">
 
-            <TextToSpeech teacher_name="Teacher Name" text={stories[0]} onSetAudioPlayer={onSetAudioPlayer} showPlayer={showPlayer} />
+            <TextToSpeech teacher_name="Teacher Name" text={stories[1]} onSetAudioPlayer={onSetAudioPlayer} showPlayer={showPlayer} />
             {/* FOR TEACHER VOICE ADD: teacher_voice_id={voiceId} */}
             
             <button 

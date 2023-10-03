@@ -3,6 +3,7 @@ import React from 'react'
 import { Routes, Route } from 'react-router-dom';
 import StudentHome from './student/StudentHome';
 import StudentWorkView from './student/StudentWorkView';
+import NavBar from './student/NavBar';
 // import TtsParent from './TtsParent'
 // import TextToSpeech from './TextToSpeech'
 // import TextToSpeechAdd from './TextToSpeechAdd'
@@ -24,6 +25,7 @@ const App = () => {
 
   return (
     <>
+    <NavBar />
       <Routes>
         <Route path="/students/:studentId" element={<StudentHome />} />
         <Route path="/students/:studentId/lessons/:lessonId" element={<StudentWorkView />} />
