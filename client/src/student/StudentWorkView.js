@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Story from './Story';
 import AccessibilityButtons from './AccessibilityButtons';
 import AudioPlayer from './AudioPlayer';
+import NavBar from './NavBar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
@@ -39,6 +40,8 @@ function StudentWorkView() {
 
   return (
     <div className="min-h-screen bg-secondaryPurple text-textBrown">
+
+      <NavBar />
 
       <div className="container mx-auto p-4 flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 max-w-7xl">
 

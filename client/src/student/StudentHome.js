@@ -3,6 +3,7 @@
 // teacher can be through student.teacher or user context
 import React from "react";
 import StudentNotebook from "./StudentNotebook";
+import NavBar from './NavBar';
 // , { useState, useEffect, useContext }
 // import { useParams } from 'react-router-dom';
 // import { UserContext } from "../context/user";
@@ -12,6 +13,7 @@ function StudentHome() {
 
     return (
         <div className="min-h-screen bg-secondaryPurple text-textBrown">
+            <NavBar />
             <StudentNotebook/>
         </div>
     )
