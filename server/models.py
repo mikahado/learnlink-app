@@ -4,7 +4,7 @@ from config import db, bcrypt
 from sqlalchemy.orm import validates 
 from sqlalchemy.ext.hybrid import hybrid_property 
 from sqlalchemy import ForeignKey
-from app import db
+# from app import db
 
 
 # db = SQLAlchemy()
@@ -87,7 +87,7 @@ class Student(db.Model, SerializerMixin):
         return f'<Student {self.first_name} {self.last_name}>'
 
 
-class Subject(db.Model, SerializerMixin):
+class Subject(db.Model):
     __tablename__ = 'subjects'
 
     id = db.Column(db.Integer, primary_key=True)

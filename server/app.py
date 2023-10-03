@@ -1,28 +1,24 @@
 import os
 from flask import Flask, request, make_response, jsonify, session
 from flask_sqlalchemy import SQLAlchemy
-from flask_cors import CORS, cross_origin
+from flask_cors import CORS
 from flask_migrate import Migrate
 from flask_restful import Api, Resource
-
-
 from config import app, db, api
+from models import Teacher, Student, Subject
 
-app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-from models import db, Teacher,Student,Subject
-db.init_app(app)
+# db.init_app(app)
 migrate = Migrate(app, db)
-
-app.json.compact = False
 CORS(app)
 
-# db = SQLAlchemy(app)
 
 
-# Basic Route for setup 
+
+
+
 # @app.route('/')
 # @app.route('/<int:id>')
 # def index(id=0):
@@ -42,6 +38,7 @@ CORS(app)
 #         jsonify({"text": "Method Not Allowed"}),
 #         405,
 #     ) 
+    
 class ClearSession(Resource): 
     def delete(self): 
         session['teacher_id'] = None 
@@ -163,14 +160,24 @@ class Subjects(Resource):
         ) 
         return response
 
+# api.add_resource(TeacherSignup, '/teachers/signup')
+# api.add_resource(StudentSignup, '/students/signup')
+# api.add_resource(Login, '/login', endpoint='login') 
+# api.add_resource(Logout, '/logout', endpoint='logout') 
+# api.add_resource(CheckSession, '/check_session', endpoint='check_session') 
+# api.add_resource(Teachers, '/teachers', endpoint='teachers') 
+# api.add_resource(Students, '/students', endpoint='students') 
+# api.add_resource(Subjects, '/subjects', endpoint='subjects') 
+
+api.add_resource(ClearSession, '/clear_session')
 api.add_resource(TeacherSignup, '/teachers/signup')
 api.add_resource(StudentSignup, '/students/signup')
-api.add_resource(Login, '/login', endpoint='login') 
-api.add_resource(Logout, '/logout', endpoint='logout') 
-api.add_resource(CheckSession, '/check_session', endpoint='check_session') 
-api.add_resource(Teachers, '/teachers', endpoint='teachers') 
-api.add_resource(Students, '/students', endpoint='students') 
-api.add_resource(Subjects, '/subjects', endpoint='subjects') 
+api.add_resource(CheckSession, '/check_session')
+api.add_resource(Login, '/login')
+api.add_resource(Logout, '/logout')
+api.add_resource(Teachers, '/teachers')
+api.add_resource(Students, '/students')
+api.add_resource(Subjects, '/subjects')
 
 if __name__ == '__main__':
     app.run(port=5555)
