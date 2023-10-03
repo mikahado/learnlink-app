@@ -162,13 +162,13 @@ class Moral(Resource):
 def generate_prompt(input_text):
     return f"""{story}
     
-Summarize the moral of the story above in 280 characters or less for elementary school students with accessibility needs. Use lots of playful, meaningful emojis to assist in reading comprehension. 
+    Summarize the moral of the story above in 280 characters or less for elementary school students with accessibility needs. Use lots of playful, meaningful emojis to assist in reading comprehension. 
 
-Consider the bio of the student and tailor the summary to their needs.
+    Consider the bio of the student and tailor the summary to their needs.
 
-""".format(
-        input_text.capitalize()
-    )
+    """.format(
+            input_text.capitalize()
+        )
 
 # api.add_resource(TeacherSignup, '/teachers/signup')
 # api.add_resource(StudentSignup, '/students/signup')
