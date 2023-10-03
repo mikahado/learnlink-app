@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function LoginTeacher() {
   return (
     <div className="font-inter text-center flex flex-col justify-center w-100 h-screen border-2 rounded">
@@ -26,9 +28,11 @@ function LoginTeacher() {
         >
           Login
         </button>
+        <Link to='/signup'>
         <button className="block border rounded-lg font-thin border-black lg:w-48 md:w-40 sm:w-24 px-3">
           Sign Up
         </button>
+        </Link>
       </div>
     </div>
   );
