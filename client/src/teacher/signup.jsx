@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function SignUp() {
   const buttonClassname =
     "border border-black rounded-lg px-2 w-48 sm:w-24 mt-20 bg-ctaGreen";
@@ -50,7 +52,7 @@ function SignUp() {
         </div>
         <div className="flex flex-col items-center mt-2">
           <button type="submit" className={buttonClassname}>
-            Submit
+            Next
           </button>
         </div>
       </form>
