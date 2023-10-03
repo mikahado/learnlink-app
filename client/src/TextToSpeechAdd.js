@@ -103,11 +103,13 @@ const TextToSpeechAdd = ( {onVoiceIdChange} ) => {
   return (
     <div>
 
-    <h2>Voice Clone Instructions</h2>
+    <h2 className="text-5xl font-bold pt-20">Voice Clone Instructions</h2>
 
+    <div className="container mx-auto px-4 mt-10 font-thin bg-white rounded-3xl py-20 xsm:w-4/5 xsm:h-5/6">
     <p>1. Stay 6 inches away from the microphone.</p>
     <p>2. In your best storyteller voice, read the story below. </p> 
     <p>3. Read clearly. Slower is better.</p>
+    </div>
     
     
     <em>
@@ -115,6 +117,16 @@ const TextToSpeechAdd = ( {onVoiceIdChange} ) => {
     </em>
     <br/><br/>
 
+    <div class="w-20 h-20 mt-14 ml-8 rounded-2xl bg-secondaryPurple">
+
+    </div>
+    <div class="w-20 h-20 mt-14 ml-8 rounded-2xl bg-secondaryPurple"></div>
+    <div class="w-20 h-20 mt-14 ml-8 rounded-2xl bg-secondaryPurple">
+
+    </div>
+    <div class="w-20 h-20 mt-14 ml-8 rounded-2xl bg-secondaryPurple">
+      
+    </div>
       <button id="record" onClick={startRecording} disabled={isRecording} className=''>
         Start Recording
       </button>
