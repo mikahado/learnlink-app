@@ -41,18 +41,46 @@ class ClearSession(Resource):
         session['teacher_id'] = None 
         return {}, 204 
 
-class Signup(Resource): 
+class TeacherSignup(Resource): 
     def post(self): 
-        username = request.get_json()['username'] 
-        teacher = Teacher.query.filter(Teacher.username == username).first()
+        teacher_info = Teacher(
+            first_name = request.get_json()['first_name'],
+            last_name = request.get_json()['last_name'],
+            email = request.get_json()['email'],
+            username = request.get_json()['username'],
+            pin = request.get_json()['pin'],
+        )
+        teacher = Teacher.query.filter(Teacher.username == teacher_info.username).first()
         password = request.get_json()['password'] 
-        if username and password and not teacher: 
-            new_user = Teacher(username=username) 
-            new_user.password_hash = password 
-            db.session.add(new_user) 
+
+        if teacher_info.username and password and not teacher: 
+            teacher_info.password_hash = password 
+            db.session.add(teacher_info) 
             db.session.commit() 
-            session['teacher_id'] = new_user.id 
-            return new_user.to_dict(),201 
+            session['teacher_id'] = teacher_info.id 
+            return teacher_info.to_dict(),201 
+         
+        return {'error': '422 Unprocessable Entity'}, 422 
+
+class StudentSignup(Resource): 
+    def post(self): 
+        student_info = Student(
+            first_name = request.get_json()['first_name'],
+            last_name = request.get_json()['last_name'],
+            username = request.get_json()['username'],
+            DOB = request.get_json()['DOB'],
+            school_name = request.get_json()['pin'],
+            classroom = request.get_json()['pin'],
+            accommodations = request.get_json()['accommodations']
+        )
+        student = Student.query.filter(Student.username == student_info.username).first()
+        password = request.get_json()['password'] 
+
+        if student_info.username and password and not student: 
+            student_info.password_hash = password 
+            db.session.add(student_info) 
+            db.session.commit()
+            return student_info.to_dict(),201 
          
         return {'error': '422 Unprocessable Entity'}, 422 
     
@@ -90,6 +118,27 @@ class Teachers(Resource):
         ) 
         return response
     
+    #  ADDING TEACHER INFO LIKE SCHOOL NAME, CLASSROOM, VOICE
+    # def post(self):
+    #     new_teacher = Teacher(
+    #         teacher_first=request.get_json()['teacher_first'],
+    #         teacher_last=request.get_json()['teacher_last'],
+    #     )
+
+    #     # if new_bet.bet_name != Bet.query.filter(Bet.name == new_bet.bet_name).first():
+    #     db.session.add(new_bet)
+    #     db.session.commit()
+
+    #     response_dict = new_bet.to_dict()
+
+    #     response = make_response(
+    #         response_dict,
+    #         201,
+    #     )
+
+    #     return response
+
+    
 class Students(Resource):
     def get(self):
         students_all = [students.to_dict() for students in Student.query.all()] 
@@ -108,7 +157,8 @@ class Subjects(Resource):
         ) 
         return response
 
-api.add_resource(Signup, '/signup', endpoint='signup') 
+api.add_resource(TeacherSignup, '/teachers/signup')
+api.add_resource(StudentSignup, '/students/signup')
 api.add_resource(Login, '/login', endpoint='login') 
 api.add_resource(Logout, '/logout', endpoint='logout') 
 api.add_resource(CheckSession, '/check_session', endpoint='check_session') 
