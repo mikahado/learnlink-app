@@ -1,4 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
+import Pause from "./teacher/pause.png"
+import Play from "./teacher/play.png"
+import Record from "./teacher/record.png"
+import Return from "./teacher/return.png"
 
 const TextToSpeechAdd = ({ onVoiceIdChange }) => {
   const [isRecording, setIsRecording] = useState(false);
@@ -12,6 +16,8 @@ const TextToSpeechAdd = ({ onVoiceIdChange }) => {
   // const handleVoiceIdChange = (voiceId) => {
   //   onVoiceIdChange(voiceId);
   // }
+
+  
 
   const startRecording = () => {
     navigator.mediaDevices
@@ -104,10 +110,17 @@ const TextToSpeechAdd = ({ onVoiceIdChange }) => {
       </div>
       <em>{isRecording ? <h3>Recording....</h3> : null}</em>
       <div className="flex flex-row items-center justify-center">
-        <div class="w-20 h-20 mt-14 ml-8 rounded-2xl bg-secondaryPurple"></div>
-        <div class="w-20 h-20 mt-14 ml-8 rounded-2xl bg-secondaryPurple"></div>
-        <div class="w-20 h-20 mt-14 ml-8 rounded-2xl bg-secondaryPurple"></div>
-        <div class="w-20 h-20 mt-14 ml-8 rounded-2xl bg-secondaryPurple"></div>
+        <div class="w-20 h-20 mt-14 ml-8 rounded-2xl bg-secondaryPurple flex justify-center ">
+        <img src={Pause} className="object-scale-down"/>
+        </div>
+        
+        <div class="w-20 h-20 mt-14 ml-8 rounded-2xl bg-secondaryPurple flex justify-center ">
+        <img src={Record} className="object-scale-down"/>
+        </div> <div class="w-20 h-20 mt-14 ml-8 rounded-2xl bg-secondaryPurple flex justify-center ">
+        <img src={Return} className="object-scale-down"/>
+        </div> <div class="w-20 h-20 mt-14 ml-8 rounded-2xl bg-secondaryPurple flex justify-center ">
+        <img src={Play} className="object-scale-down"/>
+        </div>
       </div>
       <button
         id="record"

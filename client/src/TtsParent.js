@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import TextToSpeech from "./student/TextToSpeech";
+import TextToSpeechTeacher from "./teacher/TextToSpeechTeach";
 import TextToSpeechAdd from "./TextToSpeechAdd";
 
 function ParentComponent() {
@@ -12,9 +12,9 @@ function ParentComponent() {
   };
 
   return (
-    <div>
+    <div className="font-inter text-center content-around w-100 bg-primaryPurple h-screen">
       {/* Render TextToSpeech component and pass the voiceId */}
-      {/* <TextToSpeech teacher_name="Teacher Name" teacher_voice_id={voiceId} text={"hi"} /> */}
+      <TextToSpeechTeacher teacher_name="Teacher Name" teacher_voice_id={voiceId} text={"hi"} />
 
       {/* Render TextToSpeechAdd component and pass the callback function */}
       <TextToSpeechAdd onVoiceIdChange={handleVoiceIdChange} />
