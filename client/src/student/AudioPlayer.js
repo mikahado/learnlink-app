@@ -77,6 +77,9 @@ function AudioPlayer({ audio }) {
         </div>
 
     )
+
 }
+
+
 
 export default AudioPlayer;

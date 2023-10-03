@@ -1,8 +1,7 @@
 import React from 'react';
 import BionicReader from './BionicReader';
-import stories from '../Readings';
 
-function Story({ showImages, textSize, showBionicReader }) {
+function Story({ showImages, textSize, showBionicReader, story }) {
 
   return (
     <div className="container mx-auto p-2 sm:p-4 md:p-6 max-h-screen flex flex-col">
@@ -22,7 +21,7 @@ function Story({ showImages, textSize, showBionicReader }) {
                 />
             }
         
-            {showBionicReader ? <BionicReader text={stories[1]} /> : <div style={{ whiteSpace: 'pre-line' }}>{stories[1]}</div>}
+            {showBionicReader ? <BionicReader text={"hi"} /> : <div style={{ whiteSpace: 'pre-line' }}>{"hi"}</div>}
         </div>
     
 </div>

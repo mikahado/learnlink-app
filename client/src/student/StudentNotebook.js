@@ -1,9 +1,9 @@
 import React from 'react';
 
-function StudentNotebook() {
+function StudentNotebook({ stories }) {
   return (
     <div className="container mx-auto p-2 sm:p-4 md:p-6 ">
-      {/* Tabs */}
+      {/* Tabs - Map through subjects */}
       <div className="flex flex-col sm:flex-row">
         <div className="tab w-full sm:w-1/4 text-center py-2 bg-textGround sm:rounded-t-3xl border border-b-0">Reading</div>
         <div className="tab w-full sm:w-1/4 text-center py-2 bg-inactiveGray sm:rounded-t-3xl border border-gray-300">Math</div>
@@ -13,21 +13,13 @@ function StudentNotebook() {
 
       {/* Tab Content */}
       <div className="content bg-textGround p-2 sm:p-4 md:p-6 rounded-b-lg border border-t-0 overflow-y-auto">
-        <div className="border rounded-lg">
-            <img src="https://fakeimg.pl/600x400" alt="story1" ></img>
-        </div>
-        <div className="border rounded-lg">
-            <img src="https://fakeimg.pl/600x400" alt="story1"></img>
-        </div>
-        <div className="border rounded-lg">
-            <img src="https://fakeimg.pl/600x400" alt="story1"></img>
-        </div>
-        <div className="border rounded-lg">
-            <img src="https://fakeimg.pl/600x400" alt="story1"></img>
-        </div>
-        <div className="border rounded-lg">
-            <img src="https://fakeimg.pl/600x400" alt="story1"></img>
-        </div>
+        
+        {stories && stories.map(story => 
+            <div className="border rounded-lg" key={story.id} >
+                <img src={story.image} alt={story.title} />
+            </div>
+        )
+        }
       </div>
 
       {/* Style */}

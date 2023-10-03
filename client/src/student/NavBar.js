@@ -10,6 +10,7 @@ return (
         <button className="py-2 px-4 bg-textGround mx-8 rounded text-buttonTextGreen">
             <span>Help </span>
             <FontAwesomeIcon icon={faQuestionCircle} size="lg" />
+            {/* <div className="help-button"></div> */}
         </button>
         <button className="py-2 px-4 bg-textGround mx-8 rounded text-buttonTextGreen">Teacher Name</button>
     </div>
