@@ -4,6 +4,7 @@ import Play from "./teacher/play.png";
 import Record from "./teacher/record.png";
 import Return from "./teacher/return.png";
 import TextToSpeechTeach from "./teacher/TextToSpeechTeach";
+import { Link } from "react-router-dom";
 
 const TextToSpeechAdd = ({ onVoiceIdChange }) => {
 
@@ -193,6 +194,14 @@ const TextToSpeechAdd = ({ onVoiceIdChange }) => {
           >
             Submit
           </button>
+
+            <Link to="/classpage">
+          <button
+           className="block text-sm rounded-2xl bg-ctaGreen h-[36px] lg:w-48 md:w-40 sm:w-24 px-3"
+          >
+            Next
+          </button>
+          </Link>
         </div>
       </div>
      
