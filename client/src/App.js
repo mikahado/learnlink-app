@@ -7,6 +7,7 @@ import ClassPage from "./teacher/classpage";
 // import TtsParent from './TtsParent'
 // import TextToSpeech from './TextToSpeech'
 // import TextToSpeechAdd from './TextToSpeechAdd'
+import StudentSetUp from "./teacher/StudentSetUp";
 
 import { UserProvider } from "./context/user"
 
@@ -30,6 +31,7 @@ const App = () => {
         {/* <Route exact path="/" element={<TtsParent />} />
         <Route exact path="/tts" element={<TextToSpeech teacher_voice_id={voiceId}/>} />
         <Route exact path="/ttsadd" element={<TextToSpeechAdd onVoiceIdChange={handleVoiceIdChange}/>} /> */}
+        <Route exact path="/newstudent" element={<StudentSetUp/>}/>
       </Routes>
     </UserProvider>
     </>

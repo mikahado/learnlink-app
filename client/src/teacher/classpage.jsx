@@ -1,13 +1,13 @@
 import Table from "./TableOfStudents";
-
+import { Link } from "react-router-dom";
 
 function ClassPage() {
-  const buttonClassname = "border rounded-lg border-black px-2 w-full sm:w-full";
+  const buttonClassname ="border border-black rounded-lg  px-2 w-full sm:w-full";
   return (
     <div>
       <nav class="bg-slate-300 p-4">
         <div class="container mx-auto flex justify-between items-center">
-          <h1 className="text-md font-inter ">Hello Mr.Smith</h1>
+          <h1 className="text-md font-inter">Hello Mr.Smith</h1>
         </div>
       </nav>
 
@@ -19,7 +19,16 @@ function ClassPage() {
         <button className={buttonClassname}>Spelling</button>
       </div>
       <div className="py-4">
-      <Table/>
+        <Table />
+      </div>
+      <div className="flex justify-center py-4">
+        <div className="w-40">
+          <Link to="/newstudent">
+          <button className="border border-black rounded-lg px-2 w-full">
+            Add Student
+          </button>
+          </Link>
+        </div>
       </div>
     </div>
   );
