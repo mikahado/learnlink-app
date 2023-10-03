@@ -146,34 +146,29 @@ class Subjects(Resource):
             200, 
         ) 
         return response
-    
-    @app.route("/moral", methods=("GET", "POST"))
-    def index():
-        if request.method == "POST":
-            # animal = request.form["animal"]
-            # Use the content of the input.txt file in your custom prompt generation
-            prompt = generate_prompt(input_text)
-            response = openai.Completion.create(
-                model="text-davinci-003",
-                prompt=prompt,
-                temperature=0.9,
-                max_tokens=300
-            )
-            return redirect(url_for("index", result=response.choices[0].text))
 
-        result = request.args.get("result")
-        return render_template("index.html", result=result)
-
-    def generate_prompt(input_text):
-        return f"""{input_text}{student_bio}
-        
-    Summarize the moral of the story above in 280 characters or less for elementary school students with accessibility needs. Use lots of playful, meaningful emojis to assist in reading comprehension. 
-
-    Consider the bio of the student and tailor the summary to their needs.
-
-    """.format(
-            input_text.capitalize()
+class Moral(Resource):
+    def post(self):
+        # story = request.get_json()['story']
+        prompt = generate_prompt(story)
+        response = openai.Completion.create(
+            model="text-davinci-003",
+            prompt=prompt,
+            temperature=0.9,
+            max_tokens=300
         )
+        return response
+
+def generate_prompt(input_text):
+    return f"""{story}
+    
+Summarize the moral of the story above in 280 characters or less for elementary school students with accessibility needs. Use lots of playful, meaningful emojis to assist in reading comprehension. 
+
+Consider the bio of the student and tailor the summary to their needs.
+
+""".format(
+        input_text.capitalize()
+    )
 
 # api.add_resource(TeacherSignup, '/teachers/signup')
 # api.add_resource(StudentSignup, '/students/signup')
@@ -193,7 +188,7 @@ api.add_resource(Logout, '/logout')
 api.add_resource(Teachers, '/teachers')
 api.add_resource(Students, '/students')
 api.add_resource(Subjects, '/subjects')
-api.add_resource(Subjects, '/moral')
+api.add_resource(Moral, '/moral')
 
 if __name__ == '__main__':
     app.run(port=5555)
