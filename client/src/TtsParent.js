@@ -1,26 +1,25 @@
-// import React, { useState } from "react";
+import React, { useState } from "react";
 
-// import TextToSpeech from "./student/TextToSpeech";
-// import TextToSpeechAdd from "./TextToSpeechAdd";
+import TextToSpeech from "./student/TextToSpeech";
+import TextToSpeechAdd from "./TextToSpeechAdd";
 
-// function ParentComponent() {
-//   const [voiceId, setVoiceId] = useState(null);
+function ParentComponent() {
+  const [voiceId, setVoiceId] = useState(null);
 
-//   const handleVoiceIdChange = (newVoiceId) => {
-//     console.log("newVoiceId", newVoiceId)
-//     setVoiceId(newVoiceId);
-//   };
+  const handleVoiceIdChange = (newVoiceId) => {
+    console.log("newVoiceId", newVoiceId)
+    setVoiceId(newVoiceId);
+  };
 
-//   return (
-//     <div>
-//       <h1>LearnLink Teacher's Voice Synthesizer</h1>
-//       {/* Render TextToSpeech component and pass the voiceId */}
-//       <TextToSpeech teacher_name="Teacher Name" teacher_voice_id={voiceId} text={"hi"} />
+  return (
+    <div>
+      {/* Render TextToSpeech component and pass the voiceId */}
+      <TextToSpeech teacher_name="Teacher Name" teacher_voice_id={voiceId} text={"hi"} />
 
-//       {/* Render TextToSpeechAdd component and pass the callback function */}
-//       <TextToSpeechAdd onVoiceIdChange={handleVoiceIdChange} />
-//     </div>
-//   );
-// }
+      {/* Render TextToSpeechAdd component and pass the callback function */}
+      <TextToSpeechAdd onVoiceIdChange={handleVoiceIdChange} />
+    </div>
+  );
+}
 
-// export default ParentComponent;
+export default ParentComponent;

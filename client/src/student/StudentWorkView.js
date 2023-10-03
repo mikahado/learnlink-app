@@ -3,7 +3,7 @@ import Story from './Story';
 import AccessibilityButtons from './AccessibilityButtons';
 import AudioPlayer from './AudioPlayer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faQuestionCircle, faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
 function StudentWorkView() {
 
@@ -14,6 +14,7 @@ function StudentWorkView() {
   const [showMoral, setShowMoral] = useState(false);
   const [showPlayer, setShowPlayer] = useState(false);
   const [audio, setAudio] = useState(null);
+  const [error, setError] = useState("");
 
   function onSetAudioPlayer(aud) {
     setShowPlayer(!showPlayer);
@@ -32,19 +33,12 @@ function StudentWorkView() {
     setShowBionicReader(!showBionicReader);
   }
 
+  function onError(err) {
+    setError(err);
+  }
+
   return (
     <div className="min-h-screen bg-secondaryPurple text-textBrown">
-
-      {/* Top Nav */}
-      <div className="bg-primaryPurple flex justify-between p-4">
-        <button className="py-2 px-4 bg-textGround mx-8 rounded text-buttonTextGreen">Student Name</button>
-        <button className="py-2 px-4 bg-textGround mx-8 rounded text-buttonTextGreen">
-          <span>Help </span>
-          <FontAwesomeIcon icon={faQuestionCircle} size="lg" />
-        </button>
-        <button className="py-2 px-4 bg-textGround mx-8 rounded text-buttonTextGreen">Teacher Name</button>
-      </div>
-
 
       <div className="container mx-auto p-4 flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 max-w-7xl">
 
@@ -56,10 +50,14 @@ function StudentWorkView() {
           onBionicReaderToggle={onBionicReaderToggle}
           onSetAudioPlayer={onSetAudioPlayer}
           showPlayer={showPlayer}
+          onError={onError}
         />
 
         {/* Story Content */}
         <div className="flex-1 bg-textGround p-4 rounded-lg shadow-md">
+
+          {/* Errors Container */}
+          <div className="bg-errorRed text-white flex items-center justify-center rounded-lg py-4"> {error}</div>
           
           {/* Audio Player */}
           {showPlayer && <AudioPlayer audio={audio} />}
@@ -90,7 +88,6 @@ function StudentWorkView() {
           </div>
 
         </div>
-
 
       </div>
 

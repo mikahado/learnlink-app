@@ -43,10 +43,55 @@ If you don't have Python installed: refer to the [Python Installation Guide](htt
    ```
    npm start
    ```
+### Verify 
+React application: [http://127.0.0.1:4000](http://127.0.0.1:4000)
+Flask application: [http://127.0.0.1:5555](http://127.0.0.1:5555)
+#####
 
-### Verify Your Setup
+# FEATURES
 
-To check if everything is working, visit the following URLs in your web browser:
+### Accessibility Features
+- Four principles: Perceivable, Operable, Understandable, Robust (WCAG).
+- Incorporates ARIA Authoring Practices Guide (APG).
+- Reading curriculum highlights Augmentative and Alternative Communication (AAC) needs.
+- Visual design promotes high-contrast and color-permitting options for visual variances.
+- Multi-lingual AI text-to-speech option that offers the student to hear their personal teacher's voice. 
 
+<<<<<<<<< Temporary merge branch 1
 - React application: [http://127.0.0.1:4000](http://127.0.0.1:4000)
 - Flask application: [http://127.0.0.1:5555](http://127.0.0.1:5555)
+
+
+## AI Eleven Lab Setup
+```
+   pip install elevenlabs
+   ```
+
+   ```
+   brew install ffmpeg
+   ```
+=========
+
+### AI
+- **Synthetic Speech**: Technologies to incorporate a teacher's voice in the storytelling. 
+- **Summarization**: ChatGPT API to generate text summaries/morals relative to a student's reading level and bio.
+- **Text-to-speech**: Bark model to read emotive voice for the stories. 
+
+### Backend Development
+
+- **Python:** LearnLink utilizes Python with the Flask framework. This allows for efficient and scalable server-side logic.
+- **AWS:** Manages Python dependencies with consistent environments and package management.
+
+### Frontend Development
+
+-**React:**
+-**Javascript:**
+
+### Security Considerations
+
+- **Cybersecurity:**
+
+### Testing and Deployment
+
+- **Web Browsers:** Both frontend and backend applications can be tested in web browsers.
+>>>>>>>>> Temporary merge branch 2

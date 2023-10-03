@@ -1,35 +1,46 @@
+import { Link } from "react-router-dom";
+
 function LoginTeacher() {
+  const inputCss =
+    "block font-thin indent-2 border rounded-2xl placeholder-black border-black bg-white h-[64px] lg:w-80 xl:w-280 md:w-48 sm:w-40";
+
+    const signUp =
+    "border border-black rounded-lg px-2 w-48 sm:w-24 mt-20 bg-ctaGreen";
+
+
   return (
-    <div className="font-inter text-center flex flex-col justify-center w-100 h-screen border-2 rounded">
-      <h1 className="text-5xl font-thin">Welcome to LearnLink</h1>
+    <div className="font-inter text-center content-around w-100 bg-primaryPurple h-screen">
+      <h1 className="text-5xl font-bold pt-20">Welcome to LearnLink</h1>
       <br />
-      <div className="flex flex-col items-center mt-15 w-100">
-        <form className="space-y-2 text-center m-4 w-100">
+      <form className="container mx-auto mt-40">
+      <div className="grid grid-cols-1 place-items-center m-0 space-y-8">
           <input
             type="email"
             id="email"
             name="email"
             placeholder="Email or Username"
-            className="block font-thin indent-2 border rounded-lg  placeholder-black border-black bg-slate-300 lg:w-96 md:w-62 sm:w-40"
+            className={inputCss}
           />
           <input
             type="password"
             id="password"
             name="password"
             placeholder="Password"
-            className="block border font-thin indent-2 rounded-lg placeholder-black border-black bg-slate-300 lg:w-96 md:w-62 sm:w-40"
+            className={inputCss}
           />
-        </form>
         <button
           type="submit"
-          className="block m-4 border font-thin rounded-lg border-black bg-slate-300 lg:w-48 md:w-40 sm:w-24 px-3"
+          className="block m-4 text-sm rounded-2xl bg-ctaGreen h-[36px] lg:w-48 md:w-40 sm:w-24 px-3"
         >
           Login
         </button>
-        <button className="block border rounded-lg font-thin border-black lg:w-48 md:w-40 sm:w-24 px-3">
+        <Link to='/signup'>
+        <button className="block border rounded-2xl text-sm  text-white h-[36px] border-white lg:w-48 md:w-40 sm:w-24 px-3">
           Sign Up
         </button>
+        </Link>
       </div>
+        </form>
     </div>
   );
 }
