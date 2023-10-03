@@ -4,9 +4,10 @@ from config import db, bcrypt
 from sqlalchemy.orm import validates 
 from sqlalchemy.ext.hybrid import hybrid_property 
 from sqlalchemy import ForeignKey
+from app import db
 
 
-db = SQLAlchemy()
+# db = SQLAlchemy()
 
 class Teacher(db.Model, SerializerMixin):
     __tablename__ = 'teachers'
@@ -55,7 +56,8 @@ class Teacher(db.Model, SerializerMixin):
         return pin
 
     def __repr__(self):
-        return f'<Teacher {self.title}>'
+        return f'<Teacher {self.first_name} {self.last_name}>'
+
 
 class Student(db.Model, SerializerMixin):
     __tablename__ = 'students'
@@ -82,7 +84,8 @@ class Student(db.Model, SerializerMixin):
         return bio
 
     def __repr__(self):
-        return f'<Student {self.title}>'
+        return f'<Student {self.first_name} {self.last_name}>'
+
 
 class Subject(db.Model, SerializerMixin):
     __tablename__ = 'subjects'
@@ -96,7 +99,7 @@ class Subject(db.Model, SerializerMixin):
     students = db.relationship('Student', secondary='student_subjects', back_populates='subjects')
 
 # Define the many-to-many association tables
-teacher_subjects = db.Table('teacher_subjects',
+    teacher_subjects = db.Table('teacher_subjects',
     db.Column('teacher_id', db.Integer, db.ForeignKey('teachers.id'), primary_key=True),
     db.Column('subject_id', db.Integer, db.ForeignKey('subjects.id'), primary_key=True)
 )

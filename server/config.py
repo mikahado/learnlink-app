@@ -4,7 +4,6 @@ from flask_migrate import Migrate
 from flask_restful import Api
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS, cross_origin
-
 from sqlalchemy import MetaData
 
 app = Flask(__name__)
