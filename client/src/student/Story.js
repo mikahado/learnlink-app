@@ -1,14 +1,16 @@
 import React from 'react';
 import BionicReader from './BionicReader';
 
-function Story({ showImages, textSize, showBionicReader, story }) {
+function Story({ showImages, textSize, showBionicReader, activeStory }) {
+
+    // NEED TO SET LOADING STATE IN PARENT TO DEAL WITH REFRESH ISSUE -OR- JUST FETCH THIS STORY LOL
 
   return (
     <div className="container mx-auto p-2 sm:p-4 md:p-6 max-h-screen flex flex-col">
 
     {showImages &&
         <div>
-            <h1 className="text-2xl mb-4 border p-4 rounded-3xl bg-ctaGreen text-center flex-shrink-0">The Lion and the Mouse</h1>
+            <h1 className="text-2xl mb-4 border p-4 rounded-3xl bg-ctaGreen text-center flex-shrink-0">{activeStory.title}</h1>
         </div>
     }
 
@@ -16,12 +18,12 @@ function Story({ showImages, textSize, showBionicReader, story }) {
             {showImages &&
                 <img 
                     className="mx-auto w-full max-w-screen-md lg:max-w-screen-lg xl:max-w-screen-xl object-contain object-center h-auto"
-                    src="https://media.licdn.com/dms/image/C4E12AQG8r1rVVjVzJA/article-cover_image-shrink_600_2000/0/1520155512382?e=2147483647&v=beta&t=vELe9ECIW5mtJE_RGgQ5F2tnocKXsiUfUs8G1E0vQFc" 
+                    src={activeStory.image} 
                     alt="The Lion and the Mouse"
                 />
             }
         
-            {showBionicReader ? <BionicReader text={"hi"} /> : <div style={{ whiteSpace: 'pre-line' }}>{"hi"}</div>}
+            {showBionicReader ? <BionicReader text={activeStory.text} /> : <div style={{ whiteSpace: 'pre-line' }}>{activeStory.text}</div>}
         </div>
     
 </div>

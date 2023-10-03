@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 function StudentNotebook({ stories }) {
   return (
@@ -15,9 +16,11 @@ function StudentNotebook({ stories }) {
       <div className="content bg-textGround p-2 sm:p-4 md:p-6 rounded-b-lg border border-t-0 overflow-y-auto">
         
         {stories && stories.map(story => 
-            <div className="border rounded-lg" key={story.id} >
-                <img src={story.image} alt={story.title} />
-            </div>
+            <Link to={`/students/1/lessons/${story.id}`}>
+                <div className="border rounded-lg" key={story.id} >
+                    <img src={story.image} alt={story.title} />
+                </div>
+            </Link>
         )
         }
       </div>

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, BrowserRouter } from "react-router-dom";
 import LoginTeacher from "./teacher/login";
 import ClassPage from "./teacher/classpage";
 import StudentSetUp from "./teacher/StudentSetUp";
@@ -14,13 +14,16 @@ import NavBar from './student/NavBar';
 import TtsParent from '../src/TtsParent.js'
 import TextToSpeech from '../src/TtsParent.js'
 import TextToSpeechAdd from '../src/TtsParent.js'
+import readings from './Readings';
 
 const App = () => {
-  useEffect(() => {
-    fetch("/placeholders")
-      .then((r) => r.json())
-      .then((data) => console.log(data));
-  }, []);
+
+  // GEORGE! -- This will be the fetch for the subjects/stories/content/texts
+  const [stories, setStories] = useState(null);
+
+    useEffect(() => {
+        setStories(readings);
+    }, []);
 
   const [voiceId, setVoiceId] = useState("");
 
@@ -32,8 +35,8 @@ const App = () => {
   return (
     <div>
       <Routes>
-        <Route path="/students/:studentId" element={<StudentHome />} />
-        <Route path="/students/:studentId/lessons/:lessonId" element={<StudentWorkView />} />
+        <Route path="/students/:studentId" element={<StudentHome stories={stories} />} />
+        <Route path="/students/:studentId/lessons/:lessonId" element={<StudentWorkView stories={stories} />} />
         <Route path="/login" element={<LoginTeacher />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/classpage" element={<ClassPage />} />

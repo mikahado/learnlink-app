@@ -4,19 +4,11 @@
 import React, { useState, useEffect } from "react";
 import StudentNotebook from "./StudentNotebook";
 import NavBar from './NavBar';
-import readings from '../Readings';
 // , { useState, useEffect, useContext }
-// import { useParams } from 'react-router-dom';
 // import { UserContext } from "../context/user";
 // import { Link } from 'react-router-dom';
 
-function StudentHome() {
-
-    const [stories, setStories] = useState(null);
-
-    useEffect(() => {
-        setStories(readings);
-    }, []);
+function StudentHome({ stories }) {
 
     return (
         <div className="min-h-screen bg-secondaryPurple text-textBrown">

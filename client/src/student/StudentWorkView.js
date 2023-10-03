@@ -1,12 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Story from './Story';
 import AccessibilityButtons from './AccessibilityButtons';
 import AudioPlayer from './AudioPlayer';
 import NavBar from './NavBar';
+import { useParams } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
-function StudentWorkView() {
+function StudentWorkView({ stories }) {
+
+  const { studentId, lessonId } = useParams();
+  const [activeStory, setActiveStory] = useState({});
+  
+  useEffect(() => {
+    setActiveStory(stories.find(s => s.id === parseInt(lessonId)));
+  }, [stories, lessonId]);
 
   const textSizeClass = ["text-base", "text-xl", "text-3xl", "text-5xl", "text-7xl"];
   const [showImages, setShowImages] = useState(true);
@@ -70,7 +78,8 @@ function StudentWorkView() {
           {/* Audio Player */}
           {showPlayer && <AudioPlayer audio={audio} />}
 
-          <Story showImages={showImages} textSize={textSize} showBionicReader={showBionicReader} />
+          {/* Story component */}
+          <Story showImages={showImages} textSize={textSize} showBionicReader={showBionicReader} activeStory={activeStory} />
 
           {/* Moral Container -- MAKE MODAL POP UP?*/}
           {
