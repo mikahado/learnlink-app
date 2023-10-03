@@ -75,9 +75,7 @@ function TextToSpeech({ teacher_name, teacher_voice_id, text, onSetAudioPlayer, 
         {showPlayer ? "Close" : <FontAwesomeIcon icon={faVolumeUp} size="lg" />}
         {showPlayer ? "" : <span>Read Aloud</span>}
       </button>
-      {/* <button onClick={startStreaming} disabled={loading}>
-        Read to Me 🗣️
-      </button> */}
+      
       {error && <p>{error}</p>}
     </div>
   )

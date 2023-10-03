@@ -30,7 +30,7 @@ function BionicReader({ text }) {
     });
 
     return (
-        <span>
+        <span style={{ whiteSpace: 'pre-line' }}>
             {modifiedText.map((word, index) => (
                 <React.Fragment key={index}>
                     {word} 
