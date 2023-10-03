@@ -36,31 +36,24 @@ function StudentSetUp() {
   }
 
   return (
-    <div className="font-inter font-thin">
-      <nav class="bg-slate-300 p-4">
-        <div class="container mx-auto flex justify-between items-center">
-          <h1 className="text-md font-inter">Student Setup</h1>
+    <div className="font-inter bg-secondaryPurple bg-cover h-screen">
+      <nav className=" p-4 bg-primaryPurple">
+        <div className="container mx-auto flex justify-between items-center">
+          <h1 className="text-3xl font-inter">New Student</h1>
         </div>
       </nav>
 
-      <div className="container mx-auto py-20 px-5">
+      <div className="container mx-auto py-20 mt-10 font-thin bg-white rounded-3xl">
         <form onSubmit={handleFormSubmit}>
           <div className="grid grid-cols-4 grid-rows-2 place-items-center m-0">
             <div className="col-span-2 row-span-3">
-              <h3 className="mb-2">First Name</h3>
-              <input name="first-name" className={inputCss} />
-              <h3 className="mt-2 mb-2">Last Initial</h3>
-              <input name="last-initial" className={inputCss} />
-              <h3 className="mt-2 mb-2">Age</h3>
-              <input name="age" className={inputCss} />
+              <input name="first-name" className={inputCss} placeholder="First Name"/>
+              <input name="last-initial" className={inputCss} placeholder="Last Initial"/>
+              <input name="age" className={inputCss} placeholder="Age" />
             </div>
             <div className="col-span-2 row-span-3">
-              <h3 className="mb-2">Grade</h3>
-              <input name="grade" className={inputCss} />
-              <h3 className="mt-2 mb-2">Device Number</h3>
-              <input name="device" className={inputCss} />
-              <h3 className="mt-2 mb-2">Pin Number</h3>
-              <input type="password" name="pin" className={inputCss} />
+              <input name="grade" className={inputCss} placeholder="Grade"/>
+              <input type="password" name="pin" className={inputCss} placeholder="Pin #"/>
             </div>
           </div>
 
@@ -118,7 +111,7 @@ function StudentSetUp() {
             <textarea
               name="notes"
               placeholder="Add your notes here..."
-              className="container mx-auto border break-all border-black rounded-xl outline-none sm:w-screen lg:w-screen xl:w-1/2 h-[208px]"
+              className="container mx-auto border break-all border-black rounded-xl outline-none w-1/2 h-[208px]"
               type="text"
             />
           </div>
