@@ -62,12 +62,12 @@ function TextToSpeech({ teacher_name, teacher_voice_id, text, onSetAudioPlayer, 
       {/* <p>Teacher ID: {voiceId.slice(0,5).toUpperCase()}</p> */}
       
       <button 
-        className="w-24 h-24 flex flex-col justify-center items-center rounded-lg bg-textGround text-buttonTextGreen"
+        className="w-24 h-24 flex flex-col justify-center items-center rounded-lg bg-textGround text-buttonTextGreen p-4 pb-2 text-sm"
         onClick={() => onSetAudioPlayer(new Audio('/sample-12s.mp3'))} //loadAudio //() => onSetAudioPlayer(new Audio('/sample-12s.mp3'))
         disabled={loading}
       >
-        {showPlayer ? "Close" : <FontAwesomeIcon icon={faVolumeUp} size="lg" />}
-        {showPlayer ? "" : <span>Read Aloud</span>}
+        {showPlayer ? "Close Player" : <img src="/listen.png" alt="Show Images" className="w-full h-full object-cover pb-1"/>}
+        {showPlayer ? "" : <span>Listen</span>}
       </button>
       
       
