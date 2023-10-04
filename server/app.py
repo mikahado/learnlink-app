@@ -159,7 +159,7 @@ class Moral(Resource):
             model="text-davinci-003",
             prompt=prompt,
             temperature=0.9,
-            max_tokens=300
+            max_tokens=500
         )
         return jsonify({'moral': response.choices[0].text.strip()})
     
@@ -167,9 +167,7 @@ class Moral(Resource):
 def generate_prompt(input_text):
     return f"""{input_text}
     
-    Summarize the moral of the story above in 280 characters or less for elementary school students with accessibility needs. Use lots of playful, meaningful emojis to assist in reading comprehension. 
-
-    Consider the bio of the student and tailor the summary to their needs.
+    Summarize the moral of Aesop's fable in 280 characters or less. Write it for elementary school students with accessibility needs. Use fun, meaningful emojis to assist in reading comprehension. 
 
     """.format(
             input_text.capitalize()
