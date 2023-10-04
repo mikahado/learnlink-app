@@ -16,6 +16,8 @@ import TextToSpeech from '../src/TtsParent.js'
 import TextToSpeechAdd from '../src/TtsParent.js'
 import readings from './Readings';
 
+import { UserProvider } from "./context/user"
+
 const App = () => {
 
   // GEORGE! -- This will be the fetch for the subjects/stories/content/texts
@@ -34,6 +36,7 @@ const App = () => {
 
   return (
     <div>
+      <UserProvider>
       <Routes>
         <Route path="/students/:studentId" element={<StudentHome stories={stories} />} />
         <Route path="/students/:studentId/lessons/:lessonId" element={<StudentWorkView stories={stories} />} />
@@ -44,6 +47,7 @@ const App = () => {
         <Route path="/studentprofile" element={<StudentProfile />} />
         <Route exact path="/recordvoice" element={<TtsParent />} />
       </Routes>
+      </UserProvider>
     </div>
   );
 }

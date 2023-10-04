@@ -110,6 +110,25 @@ class Teachers(Resource):
         ) 
         return response
     
+    def patch(self, id):
+        teacher = Teacher.query.get(id)
+
+        if teacher:
+            new_voice_id = request.get_json().get('newVoiceId')
+
+            if new_voice_id is not None:
+                teacher.voice_id = new_voice_id
+                db.session.commit()
+
+                return jsonify({'message': 'Voice ID updated successfully'}), 200
+            else:
+                return jsonify({'error': 'newVoiceId not provided'}), 400
+        else:
+            return jsonify({'error': 'Teacher not found'}), 404
+        
+
+
+    
     #  ADDING TEACHER INFO LIKE SCHOOL NAME, CLASSROOM, VOICE
     # def post(self):
     #     new_teacher = Teacher(
@@ -175,17 +194,6 @@ def generate_prompt(input_text):
             input_text.capitalize()
         )
 
-
-
-# api.add_resource(TeacherSignup, '/teachers/signup')
-# api.add_resource(StudentSignup, '/students/signup')
-# api.add_resource(Login, '/login', endpoint='login') 
-# api.add_resource(Logout, '/logout', endpoint='logout') 
-# api.add_resource(CheckSession, '/check_session', endpoint='check_session') 
-# api.add_resource(Teachers, '/teachers', endpoint='teachers') 
-# api.add_resource(Students, '/students', endpoint='students') 
-# api.add_resource(Subjects, '/subjects', endpoint='subjects') 
-
 api.add_resource(ClearSession, '/clear_session', endpoint='clear_session')
 api.add_resource(TeacherSignup, '/teachers/signup', endpoint='teachers/signup')
 api.add_resource(StudentSignup, '/students/signup', endpoint='students/signup')
@@ -196,6 +204,7 @@ api.add_resource(Teachers, '/teachers', endpoint='teachers')
 api.add_resource(Students, '/students', endpoint='students')
 api.add_resource(Subjects, '/subjects', endpoint='subjects')
 api.add_resource(Moral, '/moral')
+
 
 if __name__ == '__main__':
     app.run(port=5555)

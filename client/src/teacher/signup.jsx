@@ -1,13 +1,17 @@
-import { Link } from "react-router-dom";
 import React, { useContext,useState,useEffect } from "react";
-//import { TeacherContext } from "../App";
+import { Link } from "react-router-dom";
+import { UserContext } from "../context/user";
 import { useNavigate  } from "react-router-dom";
 
+
 function SignUp() {
+
+  const { setTeacherData } = useContext(UserContext); 
+
   const buttonClassname =
     "border border-black rounded-lg px-2 w-48 sm:w-24 mt-20 bg-ctaGreen";
 
-  //const [teacher,setTeacher] = useContext(TeacherContext)
+  // const [teacher,setTeacher] = useContext(TeacherContext)
   const [allTeachers,setAllTeachers] = useState([])
   const navigate = useNavigate();
   
@@ -30,6 +34,7 @@ function SignUp() {
         school_name: e.target["school"].value,
     };
     if (allTeachers.filter((obj)=>obj.username == teacherInfo.username).length == 0 && teacherInfo.password.length >= 8){
+
       fetch("/teachers/signup", {
             method: "POST",
             headers: {
@@ -46,9 +51,11 @@ function SignUp() {
           })
         .then(r=>r.json())
         .then(data=>{
-            console.log(data)
-            //setTeacher(data)
-            navigate('/recordvoice')
+
+            setTeacherData(data)
+            
+          navigate('/recordvoice');
+
         })
         .catch((error) => {
           // Handle the error and return a statement to the client
