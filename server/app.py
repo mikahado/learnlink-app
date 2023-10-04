@@ -64,15 +64,17 @@ class StudentSignup(Resource):
             # grade = request.get_json()['grade'],
             # classroom = request.get_json()['classroom'],
             accommodations = request.get_json()['accommodations']
+            bio = request.get_json()['text']
+            
         )
         student = Student.query.filter(Student.username == student_info.username).first()
         password = request.get_json()['password'] 
 
-        if student_info.username and password and not student: 
-            student_info.password_hash = password 
-            db.session.add(student_info) 
-            db.session.commit()
-            return student_info.to_dict(),201 
+        # if student_info.username and password and not student: 
+        #     student_info.password_hash = password 
+        #     db.session.add(student_info) 
+        #     db.session.commit()
+        #     return student_info.to_dict(),201 
          
         return {'error': '422 Unprocessable Entity'}, 422 
     

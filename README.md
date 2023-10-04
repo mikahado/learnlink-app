@@ -35,13 +35,14 @@ If you don't have Python installed: refer to the [Python Installation Guide](htt
 1. From the server directory, run the Flask server:
 
    ```
+   cd server
    python app.py
    ```
 
 2. Open a new terminal and run the React app from the `client/` directory:
 
    ```
-   npm start
+   npm start --prefix client
    ```
 ### Verify 
 React application: [http://127.0.0.1:4000](http://127.0.0.1:4000)
