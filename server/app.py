@@ -16,7 +16,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # db.init_app(app)
 migrate = Migrate(app, db)
-CORS(app)
+# CORS(app)
 
 openai.api_key = os.getenv("OPENAI_API_KEY")
 

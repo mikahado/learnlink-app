@@ -68,7 +68,7 @@ function StudentWorkView({ stories }) {
       })
       .then((data) => {
         
-        console.log(data)
+        setMoral(data.moral)
         setShowMoral(true); // Show the moral
       })
       .catch((error) => {
