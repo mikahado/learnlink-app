@@ -2,13 +2,13 @@ import Table from "./TableOfStudents";
 import { Link } from "react-router-dom";
 
 function ClassPage() {
-  const activeButton ="w-[121px] h-[32px] top-[104px] left-[20px] rounded-[10px] font-barlow bg-ctaGreen hover:bg-blue-600 text-black";
-  const inactiveButton ="w-[121px] h-[32px] top-[104px] left-[20px] rounded-[10px] font-barlow bg-inactiveGray hover:bg-blue-600 text-black";
+  const activeButton ="w-[121px] h-[32px] top-[104px] left-[20px] rounded-[10px] font-barlow bg-ctaGreen text-black";
+  const inactiveButton ="w-[121px] h-[32px] top-[104px] left-[20px] rounded-[10px] font-barlow bg-inactiveGray hover:bg-primaryPurple text-black";
   return (
-    <div className="bg-secondaryPurple h-screen">
+    <div className="bg-secondaryPurple h-screen font-barlow">
       <nav class="bg-primaryPurple p-4">
         <div class="container mx-auto flex justify-between items-center">
-          <h1 className="text-3xl font-inter">Hello Mr.Smith</h1>
+          <h1 className="text-3xl font-barlow">Hello Mr.Smith</h1>
         </div>
       </nav>
 
@@ -19,7 +19,7 @@ function ClassPage() {
         <button className={inactiveButton}>Social Studies</button>
         <button className={inactiveButton}>Spelling</button>
       </div>
-      <div className="py-4">
+      <div className="container mx-auto px-4 mt-10 font-thin bg-white rounded-3xl py-20 xsm:w-4/5 xsm:h-5/6">
         <Table />
       </div>
       <div className="flex justify-center py-4">

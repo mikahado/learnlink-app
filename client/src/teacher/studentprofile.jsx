@@ -14,11 +14,11 @@ function StudentProfile() {
       <nav class="bg-primaryPurple p-4">
         <div class="container mx-auto flex justify-start items-center gap-3">
           <img src={MaskFace} />
-          <h1 className="text-3xl font-inter ">{name}</h1>
+          <h1 className="text-3xl font-barlow ">{name}</h1>
         </div>
       </nav>
 
-      <div className="flex flex-col sm:flex-row sm:justify-between justify-between gap-4 md:gap-8 font-inter font-thin py-2 px-8 md:px-16">
+      <div className="flex flex-col sm:flex-row sm:justify-between justify-between gap-4 md:gap-8 font-barlow font-thin py-2 px-8 md:px-16">
         <button className={buttonClassname}>Reading</button>
         <button className={buttonClassname}>Math</button>
         <button className={buttonClassname}>Science</button>

@@ -36,14 +36,14 @@ function StudentSetUp() {
   }
 
   return (
-    <div className="font-inter bg-secondaryPurple ">
-      <nav className=" p-4 bg-primaryPurple">
-        <div className="container mx-auto flex justify-between items-center">
-          <h1 className="text-3xl font-inter">New Student</h1>
-        </div>
-      </nav>
+    <div className="font-barlow bg-secondaryPurple h-screen">
+  <nav className="p-4 bg-primaryPurple">
+    <div className="container mx-auto flex justify-between items-center">
+      <h1 className="text-3xl font-barlow">New Student</h1>
+    </div>
+  </nav>
 
-      <div className="container mx-auto px-4 mt-10 font-thin bg-white rounded-3xl py-10 xsm:w-4/5 xsm:h-[80vh] sm:h-[90vh] md:h-[80vh] lg:h-[70vh] xl:h-[60vh]">
+  <div className="container mx-auto px-4 mt-10 font-thin bg-white rounded-3xl py-10 xsm:w-4/5 xsm:h-[80vh] sm:h-[70vh] md:h-[70vh] lg:h-[70vh] xl:h-[70vh]">
         <form onSubmit={handleFormSubmit}>
         <div className="grid grid-cols-2 place-items-center m-0">
           <div className="col-span-1 space-y-4">
@@ -120,15 +120,15 @@ function StudentSetUp() {
             </div>
           </div>
 
-          <div className="flex flex-col container mx-auto items-center mt-20">
-            <label className="">Notes</label>
-            <textarea
-              name="notes"
-              placeholder="Add your notes here..."
-              className="container mx-auto border break-all border-black rounded-xl outline-none w-1/2 h-[150px]"
-              type="text"
-            />
-          </div>
+          <div className="flex flex-col container mx-auto items-center mt-10">
+      <label className="">Notes</label>
+      <textarea
+        name="notes"
+        placeholder="Add your notes here..."
+        className="container mx-auto border break-all border-black rounded-xl outline-none w-1/2 max-h-[150px]"
+        type="text"
+      />
+    </div>
           <div className="flex flex-col items-center mt-2">
             <button type="submit" className={buttonClassname}>
               Submit
