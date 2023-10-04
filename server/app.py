@@ -1,7 +1,7 @@
 import os
 from flask import Flask, request, make_response, jsonify, session, redirect, render_template, url_for
 from flask_sqlalchemy import SQLAlchemy
-from flask_cors import CORS
+# from flask_cors import CORS
 from flask_migrate import Migrate
 from flask_restful import Api, Resource
 from config import app, db, api
@@ -16,7 +16,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # db.init_app(app)
 migrate = Migrate(app, db)
-CORS(app)
+# CORS(app)
 
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
@@ -161,7 +161,9 @@ class Moral(Resource):
             temperature=0.9,
             max_tokens=500
         )
-        return jsonify({'moral': response.choices[0].text.strip()})
+        moral_text = response.choices[0].text.strip()
+
+        return jsonify({'moral': moral_text})
     
 
 def generate_prompt(input_text):
