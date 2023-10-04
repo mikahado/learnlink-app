@@ -22,7 +22,6 @@ function StudentWorkView({ stories }) {
   const [showImages, setShowImages] = useState(true);
   const [textSize, setTextSize] = useState(textSizeClass[0]);
   const [showBionicReader, setShowBionicReader] = useState(false);
-  //const [showMoral, setShowMoral] = useState(false);
   const [showPlayer, setShowPlayer] = useState(false);
   const [audio, setAudio] = useState(null);
   const [error, setError] = useState("");
@@ -72,7 +71,6 @@ function StudentWorkView({ stories }) {
         
         setMoral(data.moral)
         setIsModalOpen(true);
-        //setShowMoral(true); // Show the moral
       })
       .catch((error) => {
         console.error('Error:', error.message);
