@@ -2,17 +2,17 @@ import React, { useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faQuestionCircle } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
-//import { UserContext } from "../context/user";
+import { UserContext } from "../context/user";
 
 function NavBar() {
 
-    //const { user, setUser } = useContext(UserContext);
+    const { teacherData } = useContext(UserContext);
 
     return (
-        <div className="bg-primaryPurple flex justify-between items-center p-2 ">
+        <div className="bg-primaryPurple flex justify-between items-center p-4 ">
             <Link to={`/students/1`}>
                 <button className="h-12 py-2 px-4 bg-textGround mx-8 rounded-lg text-buttonTextGreen flex items-center justify-center">
-                    Student Name
+                    Joey W. <img src="client/src/teacher/Mask group.png" />
                 </button>
             </Link>
             <button className="h-12 w-32 flex flex-row justify-center items-center rounded-lg bg-textGround text-buttonTextGreen p-4 text-sm">
@@ -20,7 +20,7 @@ function NavBar() {
                 <span>Help</span>
             </button>
             <button className="h-12 py-2 px-4 bg-textGround mx-8 rounded-lg text-buttonTextGreen flex items-center justify-center">
-                Teacher Name
+                {"Mr. Jordan"}
             </button>
         </div>
 

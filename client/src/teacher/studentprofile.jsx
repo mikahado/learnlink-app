@@ -1,4 +1,5 @@
 import MaskFace from "./Mask group.png";
+import { Link } from 'react-router-dom';
 
 function StudentProfile() {
   const name = "Joey W.";
@@ -26,7 +27,7 @@ function StudentProfile() {
         <button className={buttonClassname}>Spelling</button>
       </div>
 
-      <div className="container mx-auto px-4 mt-10 font-thin bg-white rounded-3xl py-20 xsm:w-4/5 xsm:h-5/6">
+      <div className="container mx-auto px-4 mt-10 font-thin bg-textGround rounded-3xl py-20 xsm:w-4/5 xsm:h-5/6 h-[70vh]">
         <div className="grid grid-cols-2 grid-rows-2 gap-20 mt-10">
           <div className="flex flex-col items-center justify-center text-center">
             <h1 className="text-xl font-bold">Current Lesson</h1>
@@ -49,7 +50,7 @@ function StudentProfile() {
           </div>
         </div>
 
-        <div className="flex flex-col container mx-auto items-center mt-40">
+        <div className="flex flex-col container mx-auto items-center mt-10">
           <label className="font-bold">Notes</label>
           <textarea
             name="notes"
@@ -57,7 +58,14 @@ function StudentProfile() {
             className="container mx-auto border break-all border-black rounded-xl outline-none w-1/2 h-[208px]"
             type="text"
           />
+
+          <Link to="/students/1"><button className="px-2 py-3 rounded-xl bg-green-500 hover:bg-green-600 text-white mt-5" >Student Workspace</button></Link>
         </div>
+
+        
+       
+        
+
       </div>
     </div>
   );
