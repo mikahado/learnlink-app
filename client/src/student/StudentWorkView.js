@@ -3,6 +3,7 @@ import Story from './Story';
 import AccessibilityButtons from './AccessibilityButtons';
 import AudioPlayer from './AudioPlayer';
 import NavBar from './NavBar';
+import MoralModal from './MoralModal';
 import { useParams } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
@@ -11,6 +12,7 @@ function StudentWorkView({ stories }) {
 
   const { studentId, lessonId } = useParams();
   const [activeStory, setActiveStory] = useState({});
+  const [isModalOpen, setIsModalOpen] = useState(false);
   
   useEffect(() => {
     setActiveStory(stories?.find(s => s.id === parseInt(lessonId)));
@@ -20,7 +22,6 @@ function StudentWorkView({ stories }) {
   const [showImages, setShowImages] = useState(true);
   const [textSize, setTextSize] = useState(textSizeClass[0]);
   const [showBionicReader, setShowBionicReader] = useState(false);
-  const [showMoral, setShowMoral] = useState(false);
   const [showPlayer, setShowPlayer] = useState(false);
   const [audio, setAudio] = useState(null);
   const [error, setError] = useState("");
@@ -68,8 +69,8 @@ function StudentWorkView({ stories }) {
       })
       .then((data) => {
         
-        console.log(data)
-        setShowMoral(true); // Show the moral
+        setMoral(data.moral)
+        setIsModalOpen(true);
       })
       .catch((error) => {
         console.error('Error:', error.message);
@@ -111,10 +112,8 @@ function StudentWorkView({ stories }) {
           {/* Story component */}
           <Story showImages={showImages} textSize={textSize} showBionicReader={showBionicReader} activeStory={activeStory} />
 
-          {/* Moral Container -- MAKE MODAL POP UP?*/}
-          {
-            showMoral && moral
-          }
+          {/* MORAL MODAL */}
+          <MoralModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} moral={moral} activeStory={activeStory} />
 
           {/* Story Buttons */}
           <div className="flex justify-between mx-auto p-4 w-full md:w-3/4 lg:w-1/2">
@@ -127,7 +126,7 @@ function StudentWorkView({ stories }) {
               onClick={generateMoral}
               className="py-4 px-6 bg-buttonTextGreen text-white rounded hover:bg-teal-600"
             >
-               Moral Generator
+               What's The Moral?
             </button>
 
             <button className="py-4 px-6 bg-buttonTextGreen text-white rounded hover:bg-teal-600">

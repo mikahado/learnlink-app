@@ -5,8 +5,8 @@ function StudentNotebook({ stories }) {
   return (
     <div className="flex flex-col md:flex-row items-start md:items-center justify-center mx-auto p-2 sm:p-4 md:p-6">
 
-    {/* Div containing 5 large empty circles */}
-    <div className="flex md:flex-col space-y-4 md:space-y-4 md:space-x-0 space-x-4 mb-4 md:mb-0 md:mr-6 px-8 py-4 border rounded-full bg-green-300">
+    {/* Progress Bar */}
+    <div className="flex md:flex-col space-y-4 md:space-y-4 md:space-x-0 space-x-4 mb-4 md:mb-0 md:mr-6 px-8 py-4 border rounded-full bg-green-200">
         <div>Great Work!</div>
         <div className="w-20 h-20 border-2 border-gray-400 rounded-full">
             <img src="https://i.etsystatic.com/16458179/r/il/407f8e/4334905895/il_794xN.4334905895_43ze.jpg" alt="Lesson 1" className="w-full h-full object-cover rounded-full" />
