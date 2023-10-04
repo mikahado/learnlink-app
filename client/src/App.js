@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { Route, Routes, BrowserRouter } from "react-router-dom";
+import { useEffect, useState,createContext } from "react";
+import { Route, Routes } from "react-router-dom";
 import LoginTeacher from "./teacher/login";
 import ClassPage from "./teacher/classpage";
 import StudentSetUp from "./teacher/StudentSetUp";
@@ -14,18 +14,17 @@ import NavBar from './student/NavBar';
 import TtsParent from '../src/TtsParent.js'
 import TextToSpeech from '../src/TtsParent.js'
 import TextToSpeechAdd from '../src/TtsParent.js'
-import readings from './Readings';
+export const TeacherContext = createContext()
 
 const App = () => {
-
-  // GEORGE! -- This will be the fetch for the subjects/stories/content/texts
-  const [stories, setStories] = useState(null);
-
-    useEffect(() => {
-        setStories(readings);
-    }, []);
+  // useEffect(() => {
+  //   fetch("/placeholders")
+  //     .then((r) => r.json())
+  //     .then((data) => console.log(data));
+  // }, []);
 
   const [voiceId, setVoiceId] = useState("");
+  const [teacher,setTeacher] = useState([]);
 
   const handleVoiceIdChange = (newVoiceId) => {
     console.log(newVoiceId)
@@ -33,6 +32,7 @@ const App = () => {
   };
 
   return (
+    <TeacherContext.Provider value={[teacher,setTeacher]}>
     <div>
       <Routes>
         <Route path="/students/:studentId" element={<StudentHome stories={stories} />} />
@@ -45,6 +45,7 @@ const App = () => {
         <Route exact path="/recordvoice" element={<TtsParent />} />
       </Routes>
     </div>
+      </TeacherContext.Provider>
   );
 }
 
