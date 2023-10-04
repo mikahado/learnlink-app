@@ -30,6 +30,7 @@ def upgrade():
     sa.Column('accommodations', sa.String(), nullable=True),
     sa.Column('progress', sa.Integer(), nullable=True),
     sa.Column('bio', sa.String(), nullable=True),
+    sa.Column('pin', sa.String(length=5), nullable=True),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('subjects',
@@ -77,4 +78,5 @@ def downgrade():
     op.drop_table('students_subject')
     op.drop_table('subjects')
     op.drop_table('students')
+    op.drop_column('student', 'pin_number')
     # ### end Alembic commands ###

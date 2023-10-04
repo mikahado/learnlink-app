@@ -1,6 +1,6 @@
 from app import app, db
 from models import Teacher, Student, Subject
-from random import choice
+from random import choice, randint
 from app import db, Teacher, Student, Subject
 from datetime import datetime
 from faker import Faker
@@ -15,6 +15,9 @@ def get_random_picsum_image():
         return response.url
     else:
         return None
+    
+def generate_random_pin():
+    return str(randint(10000, 99999))
 
 # Initialize the Flask app and SQLAlchemy
 
@@ -22,6 +25,8 @@ def seed():
     with app.app_context():
         try:
             # Initialize the database
+            db.drop_all()
+
             db.create_all()
 
             # Create a teacher
@@ -34,7 +39,7 @@ def seed():
             classroom="Class A",
             pin=1234,
             voice_id="tim_voice",
-            _password_hash="hashed_password_here"  # Replace with a hashed password
+            _password_hash="1234"  # Replace with a hashed password
             )
 
             db.session.add(teacher)
@@ -53,7 +58,8 @@ def seed():
                     classroom=fake.random_element(elements=("Class A", "Class B", "Class C")),
                     accommodations=fake.sentence(),
                     progress=fake.random_int(min=0, max=100),
-                    bio=fake.paragraph()
+                    bio=fake.paragraph(),
+                    pin=generate_random_pin()
                 )
 
                 # Join the student with the "Tim" teacher through subjects
