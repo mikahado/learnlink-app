@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { UserContext } from "../context/user";
 import axios from "axios";
 //import stories from './ReadingsTest';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -7,10 +8,9 @@ import { faVolumeUp } from '@fortawesome/free-solid-svg-icons';
 
 function TextToSpeech({ teacher_name, teacher_voice_id, text, onSetAudioPlayer, showPlayer, onError }) {
 
-  // pass down the voiceID of teacher. if it's null, then use default voiceID
-  // console.log("teachervoiceid:", teacher_voice_id)
-  const voiceId = teacher_voice_id ? teacher_voice_id : "flq6f7yk4E4fJM5XTYuZ";
-  //const voiceId = teacher_voice_id ? teacher_voice_id : "EXAVITQu4vr4xnSDxMaL";
+  const { teacherData } = useContext(UserContext);
+
+  const voiceId = teacherData?.voice_id ? teacherData?.voice_id : "flq6f7yk4E4fJM5XTYuZ";
    
   const apiKey = process.env.REACT_APP_ELEVENLABS_API_KEY;
    
