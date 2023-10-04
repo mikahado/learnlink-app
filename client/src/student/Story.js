@@ -8,11 +8,7 @@ function Story({ showImages, textSize, showBionicReader, activeStory }) {
   return (
     <div className="container mx-auto p-2 sm:p-4 md:p-6 max-h-screen flex flex-col">
 
-    {showImages &&
-        <div>
-            <h1 className="text-2xl mb-4 border p-4 rounded-3xl bg-ctaGreen text-center flex-shrink-0">{activeStory?.title}</h1>
-        </div>
-    }
+        <h1 className="text-4xl mb-4 text-center flex-shrink-0 font-barlow">{activeStory?.title}</h1>
 
         <div className={`border rounded p-4 mx-auto max-w-screen-md lg:max-w-screen-lg xl:max-w-screen-xl overflow-y-auto flex-grow ${textSize}`}>
             {showImages &&
