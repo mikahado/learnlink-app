@@ -3,32 +3,41 @@ import Pause from "./teacher/pause.png";
 import Play from "./teacher/play.png";
 import Record from "./teacher/record.png";
 import Return from "./teacher/return.png";
-import TextToSpeechTeach from "./teacher/TextToSpeechTeach";
+import NotRecord from "./teacher/recording stoped .png";
 import { Link } from "react-router-dom";
 
 const TextToSpeechAdd = ({ onVoiceIdChange }) => {
-
-  
   const instruParagraph = (
     <>
       <p>1. Stay 6 inches away from the microphone.</p>
       <p>2. Read clearly. Slower is better.</p>
-      <p>3. When you're done with the instructions, click on the button "Got It!" and the story will show up. </p>
-      <p>4. Ready to read? Click on the red "Record" button and your best storyteller voice, read the story!</p>
-      <p>5. After you're done reading, click on the record button to stop the recording, and listen to your recording. </p>
-      <p>If you like if, you can submit, or re-record by clicking the rewind arrow!</p>
+      <p>
+        3. When you're done with the instructions, click on the button "Got It!"
+        and the story will show up.{" "}
+      </p>
+      <p>
+        4. Ready to read? Click on the "Record" button and in your best
+        storyteller voice, read the story!
+      </p>
+      <p>
+        5. After you're done reading, click on the record button to stop the
+        recording, and listen to your recording.{" "}
+      </p>
+      <p>
+        If you like if, you can submit, or re-record by clicking the rewind
+        arrow!
+      </p>
     </>
   );
   const [isRecording, setIsRecording] = useState(false);
-  const [displayOfIns, setDisplayOfIns] = useState(instruParagraph)
-  const [instructions, setInstructions] = useState(true)
+  const [displayOfIns, setDisplayOfIns] = useState(instruParagraph);
+  const [instructions, setInstructions] = useState(true);
   // const [voiceId, setVoiceId] = useState(null);
   const [blobFlag, setBlobFlag] = useState(false);
   const [currentRecording, setCurrentRecording] = useState(null);
   const [audioURL, setAudioURL] = useState(null);
   const mediaRecorder = useRef(null);
   const audioChunks = useRef([]);
-  
 
   // const handleVoiceIdChange = (voiceId) => {
   //   onVoiceIdChange(voiceId);
@@ -71,10 +80,9 @@ const TextToSpeechAdd = ({ onVoiceIdChange }) => {
     }
   };
 
-
   const story = (
     <>
-    <h3 className="text-center">The Lion and the Mouse.</h3>
+      <h3 className="text-center">The Lion and the Mouse.</h3>
       <p className="text-center">
         The lion lay asleep in the forest, his great head resting on his paws.
         -- A timid little Mouse came upon him unexpectedly, and in her fright
@@ -90,8 +98,9 @@ const TextToSpeechAdd = ({ onVoiceIdChange }) => {
         to one of the great ropes that bound him, she gnawed it until it parted,
         and soon the Lion was free. -- "You laughed when I said I would repay
         you," said the Mouse. "Now you see that even a Mouse can help a Lion.
-      </p></>
-  )
+      </p>
+    </>
+  );
   const sendData = async (apiKey) => {
     const data = currentRecording;
     console.log("data", data);
@@ -136,12 +145,10 @@ const TextToSpeechAdd = ({ onVoiceIdChange }) => {
     }
   };
 
-  function handleClick (e) {
+  function handleClick(e) {
     setInstructions(!instructions);
-    setDisplayOfIns(
-      e.target.innerHTML === "Got It!" ? story : instruParagraph
-    )
-    console.log(e.target.innerHTML)
+    setDisplayOfIns(e.target.innerHTML === "Got It!" ? story : instruParagraph);
+    console.log(e.target.innerHTML);
   }
 
   return (
@@ -156,17 +163,19 @@ const TextToSpeechAdd = ({ onVoiceIdChange }) => {
         </em>
       )}
       <div className="">
-          <button onClick={handleClick} className="mt-8 border rounded-2xl text-sm  text-white h-[36px] border-white lg:w-48 md:w-40 sm:w-24 px-3">{instructions? "Got It!" : "See Instructions" }</button>
+        <button
+          onClick={handleClick}
+          className="mt-8 border rounded-2xl text-sm  text-white h-[36px] border-white lg:w-48 md:w-40 sm:w-24 px-3"
+        >
+          {instructions ? "Got It!" : "See Instructions"}
+        </button>
         <div className="flex justify-center gap-8">
-          <div className="w-20 h-20 mt-8  rounded-2xl bg-secondaryPurple flex justify-center">
-            <img src={Pause} className="object-scale-down" alt="Pause" />
-          </div>
           <div
             className="w-20 h-20 mt-8 rounded-2xl bg-secondaryPurple flex justify-center"
             onClick={isRecording ? stopRecording : startRecording}
             disabled={isRecording}
           >
-            <img src={Record} className="object-scale-down" alt="Record" />
+            <img src={isRecording? Record : NotRecord} className="object-scale-down" alt="Record" />
           </div>
           <div
             className="w-20 h-20 mt-8 rounded-2xl bg-secondaryPurple flex justify-center"
@@ -175,7 +184,7 @@ const TextToSpeechAdd = ({ onVoiceIdChange }) => {
           >
             <img src={Return} className="object-scale-down" alt="Reload" />
           </div>
-          <TextToSpeechTeach />
+          {/* <TextToSpeechTeach /> */}
         </div>
 
         <div className="flex flex-col items-center my-4 space-y-8">
@@ -190,21 +199,18 @@ const TextToSpeechAdd = ({ onVoiceIdChange }) => {
             id="send"
             onClick={() => sendData(currentRecording)}
             disabled={!blobFlag}
-           className="block m-4 text-sm rounded-2xl bg-ctaGreen h-[36px] lg:w-48 md:w-40 sm:w-24 px-3"
+            className="block m-4 text-sm rounded-2xl bg-ctaGreen h-[36px] lg:w-48 md:w-40 sm:w-24 px-3"
           >
             Submit
           </button>
 
-            <Link to="/classpage">
-          <button
-           className="block text-sm rounded-2xl bg-ctaGreen h-[36px] lg:w-48 md:w-40 sm:w-24 px-3"
-          >
-            Next
-          </button>
+          <Link to="/classpage">
+            <button className="block text-sm rounded-2xl bg-ctaGreen h-[36px] lg:w-48 md:w-40 sm:w-24 px-3">
+              Skip
+            </button>
           </Link>
         </div>
       </div>
-     
     </div>
   );
 };
