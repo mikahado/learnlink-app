@@ -25,6 +25,8 @@ function StudentWorkView({ stories }) {
   const [audio, setAudio] = useState(null);
   const [error, setError] = useState("");
 
+  const [moral, setMoral] = useState("");
+
 
   function onSetAudioPlayer(aud) {
     setShowPlayer(!showPlayer);
@@ -45,6 +47,35 @@ function StudentWorkView({ stories }) {
 
   function onError(err) {
     setError(err);
+  }
+
+  function generateMoral() {
+    // Create a request object with the story as JSON data
+    const requestBody = { story: activeStory.content };
+    
+    // Send a POST request to the backend endpoint
+    fetch('/moral', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(requestBody),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Failed to generate moral');
+        }
+        return response.json();
+      })
+      .then((data) => {
+        // Set the generated moral in the state
+        setMoral(data.choices[0].text); // Assuming 'choices' contains the generated moral
+        setShowMoral(true); // Show the moral
+      })
+      .catch((error) => {
+        console.error('Error:', error.message);
+        setError('Failed to generate moral. Please try again later.');
+      });
   }
 
   return (
@@ -83,7 +114,7 @@ function StudentWorkView({ stories }) {
 
           {/* Moral Container -- MAKE MODAL POP UP?*/}
           {
-            showMoral && "This is the moral."
+            showMoral && {moral}
           }
 
           {/* Story Buttons */}
@@ -93,7 +124,8 @@ function StudentWorkView({ stories }) {
             </button>
 
             <button 
-              onClick={() => setShowMoral(!showMoral)}
+              // onClick={() => setShowMoral(!showMoral)}
+              onClick={generateMoral}
               className="py-4 px-6 bg-buttonTextGreen text-white rounded hover:bg-teal-600"
             >
                Moral Generator

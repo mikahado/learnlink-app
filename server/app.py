@@ -151,7 +151,7 @@ class Subjects(Resource):
 
 class Moral(Resource):
     def post(self):
-        # story = request.get_json()['story']
+        story = request.get_json()['story']
         prompt = generate_prompt(story)
         response = openai.Completion.create(
             model="text-davinci-003",
@@ -162,7 +162,7 @@ class Moral(Resource):
         return response
 
 def generate_prompt(input_text):
-    return f"""{story}
+    return f"""{input_text}
     
     Summarize the moral of the story above in 280 characters or less for elementary school students with accessibility needs. Use lots of playful, meaningful emojis to assist in reading comprehension. 
 

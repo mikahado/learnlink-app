@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
 import React, { useContext,useState,useEffect } from "react";
-import { TeacherContext } from "../App";
+// import { UserContext } from "../App";
 
 function SignUp() {
   const buttonClassname =
     "border border-black rounded-lg px-2 w-48 sm:w-24 mt-20 bg-ctaGreen";
 
-  const [teacher,setTeacher] = useContext(TeacherContext)
+  // const [teacher,setTeacher] = useContext(UserContext)
 
   function handleFormSubmit(e) {
     e.preventDefault();
@@ -18,25 +18,25 @@ function SignUp() {
         password: e.target["password"].value,
         school: e.target["school"].value,
     };
-      // fetch("/teachers/signup", {
-      //       method: "POST",
-      //       headers: {
-      //         "Content-Type": "application/json",
-      //       },
-      //       body: JSON.stringify({ 
-      //         "first_name": teacherInfo['First Name'],
-      //         "last_name": teacherInfo['Last Name'],
-      //         "email": teacherInfo.email,
-      //         "username": teacherInfo.username,
-      //         "school": teacherInfo.school,
-      //         "password": teacherInfo.password,
-      //        }),
-      //     })
-      //   .then(r=>r.json())
-      //   .then(data=>{
-      //       console.log(data)
-      //       setTeacher(teacherInfo)
-      //   });
+      fetch("/teachers/signup", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ 
+              "first_name": teacherInfo['First Name'],
+              "last_name": teacherInfo['Last Name'],
+              "email": teacherInfo.email,
+              "username": teacherInfo.username,
+              "school": teacherInfo.school,
+              "password": teacherInfo.password,
+             }),
+          })
+        .then(r=>r.json())
+        .then(data=>{
+            console.log(data)
+            // setTeacher(teacherInfo)
+        });
     e.target.reset();
     console.log(teacherInfo);
   }

@@ -24,7 +24,7 @@ const UserProvider = ({ children }) => {
         console.error('Error fetching user data:', error);
       });
 }, [loggedIn]);
-  
+
 
   // Load user data when the component mounts
 
