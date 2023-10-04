@@ -76,11 +76,11 @@ class Student(db.Model, SerializerMixin):
     accommodations = db.Column(db.String)
     progress = db.Column(db.Integer)
     bio = db.Column(db.String)
+    teacher_id = db.Column(db.Integer, db.ForeignKey('teachers.id'))
     # notes = db.Column(db.String) # Don't add
 
     # Define the many-to-many relationship with subjects
     subjects = db.relationship('Subject', secondary='student_subjects', back_populates='students')
-    teacher_id = db.Column(db.Integer, db.ForeignKey('teachers.id'))
     @validates('bio')
     def validate_name(self, key, bio):
         if len(str(bio)) > 250:

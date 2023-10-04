@@ -61,7 +61,8 @@ def seed():
                     accommodations=fake.sentence(),
                     progress=fake.random_int(min=0, max=100),
                     bio=fake.paragraph(),
-                    pin=generate_random_pin()
+                    pin=generate_random_pin(),
+                    teacher_id=teacher.id
                 )
 
                 # Join the student with the "Tim" teacher through subjects

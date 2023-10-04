@@ -63,7 +63,7 @@ class StudentSignup(Resource):
             pin = request.get_json()['pin'],
             # grade = request.get_json()['grade'],
             # classroom = request.get_json()['classroom'],
-            accommodations = request.get_json()['accommodations']
+            accommodations = request.get_json()['accommodations'],
             bio = request.get_json()['text']
             
         )
