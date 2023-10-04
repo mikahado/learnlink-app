@@ -20,11 +20,11 @@ function StudentSetUp() {
 
   function handleFormSubmit(e) {
     e.preventDefault();
+    // const date = moment(e.target["DOB"].value).format("DD MMMM YYYY"); // Format as "DD Month YYYY"     console.log(date)
     const studentInput = {
       'studentInfo':{
       "first_name": e.target["first-name"].value,
       "last_initial": e.target["last-initial"].value,
-      "DOB": e.target["DOB"].value,
       "Pin": e.target["pin"].value},
       'accommodations':{
         "Color Variations":e.target["color-variations"].checked,
