@@ -6,6 +6,9 @@ const UserContext = React.createContext();
 const UserProvider = ({ children }) => {
   const [user, setUser] = useState({});
   const [loggedIn, setLoggedIn] = useState(false);
+  const [teacherData, setTeacherData] = useState(null);
+
+  console.log("new teacher data", teacherData)
 
   useEffect(() => {
     fetch('/check_session') 
@@ -18,7 +21,7 @@ const UserProvider = ({ children }) => {
       })
       .then((userData) => {
         setUser(userData);
-        console.log(userData)
+        setLoggedIn(true);
       })
       .catch((error) => {
         console.error('Error fetching user data:', error);
@@ -48,7 +51,9 @@ const UserProvider = ({ children }) => {
     <UserContext.Provider 
     value={{ 
         user, 
-        logout 
+        logout,
+        setTeacherData,
+        teacherData,
     }}>
       {children}
     </UserContext.Provider>

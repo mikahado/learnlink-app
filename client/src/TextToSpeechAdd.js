@@ -101,25 +101,26 @@ const TextToSpeechAdd = ({ onVoiceIdChange }) => {
       </p>
     </>
   );
+  
   const sendData = async (apiKey) => {
     const data = currentRecording;
     console.log("data", data);
     try {
-      const apiKey = process.env.REACT_APP_ELEVENLABS_API_KEY; // Replace with your actual API key
-      const apiUrl = "https://api.elevenlabs.io/v1/voices/add"; // API endpoint URL
+      const apiKey = process.env.REACT_APP_ELEVENLABS_API_KEY; 
+      const apiUrl = "https://api.elevenlabs.io/v1/voices/add"; 
 
-      // Prepare the data to be sent in the request body as multipart/form-data
+
       const formData = new FormData();
-      formData.append("name", "Voice Name"); // Replace with the desired voice name
-      formData.append("description", "Voice Description"); // Replace with the desired description
-      formData.append("files", data, "recorded_audio.mp3"); // Add the recorded audio data as 'files'
-      // Define the headers, including the xi-api-key
+      formData.append("name", "Voice Name"); 
+      formData.append("description", "Voice Description"); 
+      formData.append("files", data, "recorded_audio.mp3"); 
+
       const headers = new Headers({
         Accept: "application/json",
         "xi-api-key": apiKey,
       });
 
-      // Create the POST request
+
       console.log("formData", formData);
       const request = new Request(apiUrl, {
         method: "POST",
@@ -127,12 +128,12 @@ const TextToSpeechAdd = ({ onVoiceIdChange }) => {
         body: formData,
       });
 
-      // Send the request
+   
       const response = await fetch(request);
       if (response.ok) {
         const responseData = await response.json();
         console.log("Voice added successfully:", responseData);
-        onVoiceIdChange(responseData.voice_id);
+        onVoiceIdChange(responseData);
         // setVoiceId(responseData.voice_id);
         // handleVoiceIdChange(responseData.voice_id)
       } else {
