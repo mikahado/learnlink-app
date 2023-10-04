@@ -19,7 +19,7 @@ class Teacher(db.Model, SerializerMixin):
     email = db.Column(db.String)
     school_name = db.Column(db.String)
     classroom = db.Column(db.String)
-    pin = db.Column(db.Integer)
+    pin = db.Column(db.Integer) # No pin for teacher
     voice_id = db.Column(db.String)
     _password_hash = db.Column(db.String)
 
@@ -49,11 +49,11 @@ class Teacher(db.Model, SerializerMixin):
             raise ValueError("Email must be unique.")
         return email
     
-    @validates('pin')
-    def validate_name(self, key, pin):
-        if len(str(pin)) != 4:
-            raise ValueError("Pin must be four digits")
-        return pin
+    # @validates('pin')
+    # def validate_name(self, key, pin):
+    #     if len(str(pin)) != 4:
+    #         raise ValueError("Pin must be four digits")
+    #     return pin
 
     def __repr__(self):
         return f'<Teacher {self.first_name} {self.last_name}>'
@@ -66,6 +66,8 @@ class Student(db.Model, SerializerMixin):
     first_name = db.Column(db.String)
     last_name = db.Column(db.String)
     username = db.Column(db.String)
+    pin = db.Column(db.Integer) # Add
+    # grade = db.Column(db.Integer) # Don't add
     avatar = db.Column(db.String)
     DOB = db.Column(db.DateTime)
     school_name = db.Column(db.String)
@@ -73,6 +75,7 @@ class Student(db.Model, SerializerMixin):
     accommodations = db.Column(db.String)
     progress = db.Column(db.Integer)
     bio = db.Column(db.String)
+    # notes = db.Column(db.String) # Don't add
 
     # Define the many-to-many relationship with subjects
     subjects = db.relationship('Subject', secondary='student_subjects', back_populates='students')

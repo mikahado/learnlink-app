@@ -38,7 +38,7 @@ class TeacherSignup(Resource):
             last_name = request.get_json()['last_name'],
             email = request.get_json()['email'],
             username = request.get_json()['username'],
-            pin = request.get_json()['pin'],
+            school_name = request.get_json()['school_name'],
         )
         teacher = Teacher.query.filter(Teacher.username == teacher_info.username).first()
         password = request.get_json()['password'] 
@@ -57,10 +57,12 @@ class StudentSignup(Resource):
         student_info = Student(
             first_name = request.get_json()['first_name'],
             last_name = request.get_json()['last_name'],
-            username = request.get_json()['username'],
+            # username = request.get_json()['username'], Not using username
             DOB = request.get_json()['DOB'],
-            school_name = request.get_json()['school_name'],
-            classroom = request.get_json()['classroom'],
+            # school_name = request.get_json()['school_name'],
+            pin = request.get_json()['pin'],
+            # grade = request.get_json()['grade'],
+            # classroom = request.get_json()['classroom'],
             accommodations = request.get_json()['accommodations']
         )
         student = Student.query.filter(Student.username == student_info.username).first()
@@ -179,15 +181,15 @@ def generate_prompt(input_text):
 # api.add_resource(Students, '/students', endpoint='students') 
 # api.add_resource(Subjects, '/subjects', endpoint='subjects') 
 
-api.add_resource(ClearSession, '/clear_session')
-api.add_resource(TeacherSignup, '/teachers/signup')
-api.add_resource(StudentSignup, '/students/signup')
-api.add_resource(CheckSession, '/check_session')
-api.add_resource(Login, '/login')
-api.add_resource(Logout, '/logout')
-api.add_resource(Teachers, '/teachers')
-api.add_resource(Students, '/students')
-api.add_resource(Subjects, '/subjects')
+api.add_resource(ClearSession, '/clear_session', endpoint='clear_session')
+api.add_resource(TeacherSignup, '/teachers/signup', endpoint='teachers/signup')
+api.add_resource(StudentSignup, '/students/signup', endpoint='students/signup')
+api.add_resource(CheckSession, '/check_session', endpoint='check_session')
+api.add_resource(Login, '/login', endpoint='login')
+api.add_resource(Logout, '/logout', endpoint='logout')
+api.add_resource(Teachers, '/teachers', endpoint='teachers')
+api.add_resource(Students, '/students', endpoint='students')
+api.add_resource(Subjects, '/subjects', endpoint='subjects')
 api.add_resource(Moral, '/moral')
 
 if __name__ == '__main__':
