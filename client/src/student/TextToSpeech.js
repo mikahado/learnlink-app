@@ -63,7 +63,9 @@ function TextToSpeech({ text, onSetAudioPlayer, showPlayer, onError }) {
       
       <button 
         className="w-24 h-24 flex flex-col justify-center items-center rounded-lg bg-textGround text-buttonTextGreen p-4 pb-2 text-sm"
-        onClick={() => onSetAudioPlayer(new Audio('/sample-12s.mp3'))} //loadAudio //() => onSetAudioPlayer(new Audio('/sample-12s.mp3'))
+        onClick={loadAudio}
+      
+
         disabled={loading}
       >
         {showPlayer ? "Close Player" : <img src="/listen.png" alt="Show Images" className="w-full h-full object-cover pb-1"/>}
