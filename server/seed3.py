@@ -5,6 +5,7 @@ from app import db, Teacher, Student, Subject
 from datetime import datetime
 from faker import Faker
 import requests  # Import the requests library for making HTTP requests
+from werkzeug.security import generate_password_hash
 
 fake = Faker()
 
@@ -29,6 +30,7 @@ def seed():
 
             db.create_all()
 
+            hashed_password = generate_password_hash("password")# Create a hashed passwo
             # Create a teacher
             teacher = Teacher(
             first_name="Tim",
@@ -39,7 +41,7 @@ def seed():
             classroom="Class A",
             pin=1234,
             voice_id="tim_voice",
-            _password_hash="1234"  # Replace with a hashed password
+            _password_hash=hashed_password  # Replace with a hashed password
             )
 
             db.session.add(teacher)
