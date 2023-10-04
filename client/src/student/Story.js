@@ -10,7 +10,7 @@ function Story({ showImages, textSize, showBionicReader, activeStory }) {
 
     {showImages &&
         <div>
-            <h1 className="text-2xl mb-4 border p-4 rounded-3xl bg-ctaGreen text-center flex-shrink-0">{activeStory.title}</h1>
+            <h1 className="text-2xl mb-4 border p-4 rounded-3xl bg-ctaGreen text-center flex-shrink-0">{activeStory?.title}</h1>
         </div>
     }
 
@@ -18,12 +18,12 @@ function Story({ showImages, textSize, showBionicReader, activeStory }) {
             {showImages &&
                 <img 
                     className="mx-auto w-full max-w-screen-md lg:max-w-screen-lg xl:max-w-screen-xl object-contain object-center h-auto"
-                    src={activeStory.image} 
+                    src={activeStory?.image} 
                     alt="The Lion and the Mouse"
                 />
             }
         
-            {showBionicReader ? <BionicReader text={activeStory.text} /> : <div style={{ whiteSpace: 'pre-line' }}>{activeStory.text}</div>}
+            {showBionicReader ? <BionicReader text={activeStory?.text} /> : <div style={{ whiteSpace: 'pre-line' }}>{activeStory?.text}</div>}
         </div>
     
 </div>

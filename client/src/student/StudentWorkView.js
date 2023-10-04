@@ -13,7 +13,7 @@ function StudentWorkView({ stories }) {
   const [activeStory, setActiveStory] = useState({});
   
   useEffect(() => {
-    setActiveStory(stories.find(s => s.id === parseInt(lessonId)));
+    setActiveStory(stories?.find(s => s.id === parseInt(lessonId)));
   }, [stories, lessonId]);
 
   const textSizeClass = ["text-base", "text-xl", "text-3xl", "text-5xl", "text-7xl"];
@@ -51,8 +51,7 @@ function StudentWorkView({ stories }) {
 
   function generateMoral() {
     // Create a request object with the story as JSON data
-    const requestBody = { story: activeStory.content };
-    
+    const requestBody = { 'text': activeStory.text }
     // Send a POST request to the backend endpoint
     fetch('/moral', {
       method: 'POST',
@@ -63,18 +62,18 @@ function StudentWorkView({ stories }) {
     })
       .then((response) => {
         if (!response.ok) {
-          throw new Error('Failed to generate moral');
+          throw new Error('Computer need help. Ask teacher.');
         }
         return response.json();
       })
       .then((data) => {
-        // Set the generated moral in the state
-        setMoral(data.choices[0].text); // Assuming 'choices' contains the generated moral
+        
+        console.log(data)
         setShowMoral(true); // Show the moral
       })
       .catch((error) => {
         console.error('Error:', error.message);
-        setError('Failed to generate moral. Please try again later.');
+        setError('Computer need help. Ask teacher.');
       });
   }
 
@@ -114,7 +113,7 @@ function StudentWorkView({ stories }) {
 
           {/* Moral Container -- MAKE MODAL POP UP?*/}
           {
-            showMoral && {moral}
+            showMoral && moral
           }
 
           {/* Story Buttons */}

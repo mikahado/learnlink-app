@@ -17,7 +17,8 @@ migrate = Migrate(app, db)
 CORS(app)
 
 
-openai.api_key = os.getenv("OPENAI_API_KEY")
+openai.api_key = "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"
+# openai.api_key = os.getenv("OPENAI_API_KEY")
 
 
 # @app.route('/')
@@ -151,15 +152,18 @@ class Subjects(Resource):
 
 class Moral(Resource):
     def post(self):
-        story = request.get_json()['story']
-        prompt = generate_prompt(story)
+        request_data = request.get_json()
+        story_text = request_data.get('text', '')
+        prompt = generate_prompt(story_text)
+
         response = openai.Completion.create(
             model="text-davinci-003",
             prompt=prompt,
             temperature=0.9,
             max_tokens=300
         )
-        return response
+        return jsonify({'moral': response.choices[0].text.strip()})
+    
 
 def generate_prompt(input_text):
     return f"""{input_text}
