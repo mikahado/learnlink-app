@@ -128,7 +128,7 @@ function StudentWorkView({ stories }) {
               onClick={generateMoral}
               className="py-4 px-6 bg-buttonTextGreen text-white rounded hover:bg-teal-600"
             >
-               Moral Generator
+               What's The Moral?
             </button>
 
             <button className="py-4 px-6 bg-buttonTextGreen text-white rounded hover:bg-teal-600">

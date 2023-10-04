@@ -10,12 +10,19 @@ const MoralModal = ({ isOpen, onClose, moral, activeStory }) => {
       {/* Overlay */}
       <div className="absolute inset-0 bg-black opacity-50" onClick={onClose}></div>
 
-      {/* Modal content */}
-      <div className="bg-white p-6 rounded shadow-lg z-10">
-        <h1 className="text-xl font-bold mb-4">{activeStory?.title}</h1>
-        <p>{moral}</p>
-        <button className="mt-4 bg-blue-500 text-white px-4 py-2 rounded" onClick={onClose}>Close</button>
-      </div>
+        {/* Modal content */}
+        <div className="relative bg-textGround p-10 rounded-lg shadow-2xl transform transition-transform duration-300 scale-95 hover:scale-100 z-10 w-3/4 sm:w-1/2 font-Barlow">
+            <button 
+                className="absolute top-2 right-2 text-buttonTextGreen text-2xl mx-1" 
+                onClick={onClose}
+            >
+                X
+            </button>
+            <div className="border rounded-lg p-4 text-xl">
+            <h1 className="text-xl font-bold mb-4 text-center">{activeStory?.title}</h1>
+            <p>{moral}</p>
+            </div>
+        </div>
     </div>
   );
 };
