@@ -1,7 +1,7 @@
 import os
 from flask import Flask, request, make_response, jsonify, session, redirect, render_template, url_for
 from flask_sqlalchemy import SQLAlchemy
-# from flask_cors import CORS
+from flask_cors import CORS
 from flask_migrate import Migrate
 from flask_restful import Api, Resource
 from config import app, db, api
@@ -16,7 +16,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # db.init_app(app)
 migrate = Migrate(app, db)
-# CORS(app)
+CORS(app)
 
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
@@ -110,22 +110,45 @@ class Teachers(Resource):
         ) 
         return response
     
+    # def patch(self, id):
+    #     teacher = Teacher.query.get(id)
+
+    #     if teacher:
+    #         new_voice_id = request.get_json().get('newVoiceId')
+
+    #         if new_voice_id is not None:
+    #             teacher.voice_id = new_voice_id
+    #             db.session.commit()
+
+    #             return jsonify({'message': 'Voice ID updated successfully'}), 200
+    #         else:
+    #             return jsonify({'error': 'newVoiceId not provided'}), 400
+    #     else:
+    #         return jsonify({'error': 'Teacher not found'}), 404
+        
+
+# In your TeacherUpdate Resource
+class TeacherUpdate(Resource):
     def patch(self, id):
-        teacher = Teacher.query.get(id)
+        teacher = Teacher.query.filter(Teacher.id == id).first()
 
         if teacher:
             new_voice_id = request.get_json().get('newVoiceId')
 
             if new_voice_id is not None:
-                teacher.voice_id = new_voice_id
-                db.session.commit()
+                    # Convert new_voice_id to str, as it might be received as a dict
+                    new_voice_id = str(new_voice_id)
 
-                return jsonify({'message': 'Voice ID updated successfully'}), 200
-            else:
-                return jsonify({'error': 'newVoiceId not provided'}), 400
-        else:
-            return jsonify({'error': 'Teacher not found'}), 404
-        
+                    # Update the teacher's voice_id
+                    teacher.voice_id = new_voice_id
+
+                    # Commit the changes to the database
+                    db.session.commit()
+
+                    return make_response(jsonify("hi"), 200)
+    
+
+
 
 
     
@@ -204,6 +227,7 @@ api.add_resource(Teachers, '/teachers', endpoint='teachers')
 api.add_resource(Students, '/students', endpoint='students')
 api.add_resource(Subjects, '/subjects', endpoint='subjects')
 api.add_resource(Moral, '/moral')
+api.add_resource(TeacherUpdate, '/teachers/<int:id>', endpoint='teacher')
 
 
 if __name__ == '__main__':

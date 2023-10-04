@@ -12,11 +12,13 @@ function ParentComponent( {user} ) {
   const { teacherData } = useContext(UserContext);
 
 
+
   const handleVoiceIdChange = (newVoiceId) => {
     console.log("newVoiceId", newVoiceId);
 
     // Send a PATCH request to update the teacher's table with the newVoiceId
     const apiUrl = `/teachers/${teacherData.id}`
+
 
     fetch(apiUrl, {
       method: "PATCH",
