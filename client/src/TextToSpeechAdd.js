@@ -4,33 +4,22 @@ import Play from "./teacher/play.png";
 import Record from "./teacher/record.png";
 import Return from "./teacher/return.png";
 import NotRecord from "./teacher/recording stoped .png";
+import TextToSpeech from "./TextToSpeech";
 import { Link, useNavigate } from "react-router-dom";
 
 const TextToSpeechAdd = ({ onVoiceIdChange }) => {
-
   const navigate = useNavigate();
-
   const instruParagraph = (
-    <>
-      <p>1. Stay 6 inches away from the microphone.</p>
-      <p>2. Read clearly. Slower is better.</p>
-      <p>
-        3. When you're done with the instructions, click on the button "Got It!"
-        and the story will show up.{" "}
-      </p>
-      <p>
-        4. Ready to read? Click on the "Record" button and in your best
-        storyteller voice, read the story!
-      </p>
-      <p>
-        5. After you're done reading, click on the record button to stop the
-        recording, and listen to your recording.{" "}
-      </p>
-      <p>
-        If you like if, you can submit, or re-record by clicking the rewind
-        arrow!
-      </p>
-    </>
+    <div class="p-4">
+      <h1>Instructions</h1>
+      <br />
+      <p>1. Maintain a 6-inch distance from the microphone.</p>
+      <p>2. Speak clearly and at a slower pace.</p>
+      <p>3. Click "Open story" to see the reading.</p>
+      <p>4. When ready start recording by pushing the red button.</p>
+      <p>5. Stop recording by pushing the stop button.</p>
+      
+    </div>
   );
   const [isRecording, setIsRecording] = useState(false);
   const [displayOfIns, setDisplayOfIns] = useState(instruParagraph);
@@ -104,25 +93,23 @@ const TextToSpeechAdd = ({ onVoiceIdChange }) => {
       </p>
     </>
   );
-  
+
   const sendData = async (apiKey) => {
     const data = currentRecording;
     console.log("data", data);
     try {
-      const apiKey = process.env.REACT_APP_ELEVENLABS_API_KEY; 
-      const apiUrl = "https://api.elevenlabs.io/v1/voices/add"; 
-
+      const apiKey = process.env.REACT_APP_ELEVENLABS_API_KEY;
+      const apiUrl = "https://api.elevenlabs.io/v1/voices/add";
 
       const formData = new FormData();
-      formData.append("name", "Voice Name"); 
-      formData.append("description", "Voice Description"); 
-      formData.append("files", data, "recorded_audio.mp3"); 
+      formData.append("name", "Voice Name");
+      formData.append("description", "Voice Description");
+      formData.append("files", data, "recorded_audio.mp3");
 
       const headers = new Headers({
         Accept: "application/json",
         "xi-api-key": apiKey,
       });
-
 
       console.log("formData", formData);
       const request = new Request(apiUrl, {
@@ -131,13 +118,12 @@ const TextToSpeechAdd = ({ onVoiceIdChange }) => {
         body: formData,
       });
 
-   
       const response = await fetch(request);
       if (response.ok) {
         const responseData = await response.json();
         console.log("Voice added successfully:", responseData);
         onVoiceIdChange(responseData);
-        navigate('/classpage');
+        // navigate("/classpage");
         // setVoiceId(responseData.voice_id);
         // handleVoiceIdChange(responseData.voice_id)
       } else {
@@ -152,13 +138,15 @@ const TextToSpeechAdd = ({ onVoiceIdChange }) => {
 
   function handleClick(e) {
     setInstructions(!instructions);
-    setDisplayOfIns(e.target.innerHTML === "Got It!" ? story : instruParagraph);
+    setDisplayOfIns(
+      e.target.innerHTML === "Open story" ? story : instruParagraph
+    );
     console.log(e.target.innerHTML);
   }
 
   return (
     <div className="flex flex-col justify-center items-center">
-      <h2 className="text-5xl font-bold pt-20">Voice Clone Instructions</h2>
+      <h2 className="text-3xl font-bold pt-20">Sample Your Voice</h2>
       <div className="container mx-auto mt-10 font-thin bg-white rounded-3xl py-20 xsm:w-4/5 xsm:h-5/6 text-center">
         {displayOfIns}
       </div>
@@ -172,7 +160,7 @@ const TextToSpeechAdd = ({ onVoiceIdChange }) => {
           onClick={handleClick}
           className="mt-8 border rounded-2xl text-sm  text-white h-[36px] border-white lg:w-48 md:w-40 sm:w-24 px-3"
         >
-          {instructions ? "Got It!" : "See Instructions"}
+          {instructions ? "Open story" : "See Instructions"}
         </button>
         <div className="flex justify-center gap-8">
           <div
@@ -180,7 +168,11 @@ const TextToSpeechAdd = ({ onVoiceIdChange }) => {
             onClick={isRecording ? stopRecording : startRecording}
             disabled={isRecording}
           >
-            <img src={isRecording? Record : NotRecord} className="object-scale-down" alt="Record" />
+            <img
+              src={isRecording ? Record : NotRecord}
+              className="object-scale-down"
+              alt="Record"
+            />
           </div>
           <div
             className="w-20 h-20 mt-8 rounded-2xl bg-secondaryPurple flex justify-center"
@@ -199,6 +191,8 @@ const TextToSpeechAdd = ({ onVoiceIdChange }) => {
               Your browser does not support the audio. Try a different browser.
             </audio>
           )}
+
+        <TextToSpeech  />
 
           <button
             id="send"

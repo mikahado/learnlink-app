@@ -6,7 +6,7 @@ import { useNavigate  } from "react-router-dom";
 
 function SignUp() {
 
-  const { setTeacherData } = useContext(UserContext); 
+  const { setUser } = useContext(UserContext); 
 
   const buttonClassname =
     "border border-black rounded-lg px-2 w-48 sm:w-24 mt-20 bg-ctaGreen";
@@ -52,7 +52,7 @@ function SignUp() {
         .then(r=>r.json())
         .then(data=>{
 
-            setTeacherData(data)
+            setUser(data)
             
           navigate('/recordvoice');
 

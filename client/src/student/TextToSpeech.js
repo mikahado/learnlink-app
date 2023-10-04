@@ -8,9 +8,9 @@ import { faVolumeUp } from '@fortawesome/free-solid-svg-icons';
 
 function TextToSpeech({ text, onSetAudioPlayer, showPlayer, onError }) {
 
-  const { teacherData } = useContext(UserContext);
+  const { user, newVoiceId, startStreaming } = useContext(UserContext);
 
-  const voiceId = teacherData?.voice_id ? teacherData?.voice_id : "flq6f7yk4E4fJM5XTYuZ";
+  const voiceId = newVoiceId ? newVoiceId : "flq6f7yk4E4fJM5XTYuZ";
    
   const apiKey = process.env.REACT_APP_ELEVENLABS_API_KEY;
    
@@ -21,41 +21,41 @@ function TextToSpeech({ text, onSetAudioPlayer, showPlayer, onError }) {
 
   const [loading, setLoading] = useState(false);
 
-  const loadAudio = async () => {
+  // const loadAudio = async () => {
 
-    setLoading(true);
-    onError("");
+  //   setLoading(true);
+  //   onError("");
 
-    const baseUrl = "https://api.elevenlabs.io/v1/text-to-speech";
-    const headers = {
-      "Content-Type": "application/json",
-      "xi-api-key": apiKey,
-    };
+  //   const baseUrl = "https://api.elevenlabs.io/v1/text-to-speech";
+  //   const headers = {
+  //     "Content-Type": "application/json",
+  //     "xi-api-key": apiKey,
+  //   };
 
-    const requestBody = {
-      text,
-      voice_settings: voiceSettings,
-    };
+  //   const requestBody = {
+  //     text,
+  //     voice_settings: voiceSettings,
+  //   };
 
-    try {
-      const response = await axios.post(`${baseUrl}/${voiceId}`, requestBody, {
-        headers,
-        responseType: "blob",
-      });
+  //   try {
+  //     const response = await axios.post(`${baseUrl}/${voiceId}`, requestBody, {
+  //       headers,
+  //       responseType: "blob",
+  //     });
 
-      if (response.status === 200) {
-        const audio = new Audio(URL.createObjectURL(response.data));
-        onSetAudioPlayer(audio);
+  //     if (response.status === 200) {
+  //       const audio = new Audio(URL.createObjectURL(response.data));
+  //       onSetAudioPlayer(audio);
         
-      } else {
-        onError("Uh oh! Ask your teacher for help.");
-      }
-    } catch (error) {
-      onError("Uh oh! Ask your teacher for help.");
-    } finally {
-      setLoading(false);
-    }
-  };
+  //     } else {
+  //       onError("Uh oh! Ask your teacher for help.");
+  //     }
+  //   } catch (error) {
+  //     onError("Uh oh! Ask your teacher for help.");
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
 
   return (
     <div>
@@ -63,7 +63,7 @@ function TextToSpeech({ text, onSetAudioPlayer, showPlayer, onError }) {
       
       <button 
         className="w-24 h-24 flex flex-col justify-center items-center rounded-lg bg-textGround text-buttonTextGreen p-4 pb-2 text-sm"
-        onClick={loadAudio}
+        onClick={startStreaming}
       
 
         disabled={loading}

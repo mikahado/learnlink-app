@@ -65,7 +65,6 @@ def seed():
                     teacher_id=teacher.id
                 )
 
-                # Join the student with the "Tim" teacher through subjects
                 subject = Subject(
                     name=f"Subject{i}",
                     content=f"Content for Subject{i}"
