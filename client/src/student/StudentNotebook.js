@@ -43,7 +43,7 @@ function StudentNotebook({ stories }) {
                 <img className="w-full h-full object-cover rounded-lg" src={story.image} alt={story.title} />
 
                 {/* Overlay with title */}
-                <div className="absolute top-0 left-0 w-full bg-green-200 opacity-90 py-3 px-4 rounded-t-lg text-center border-b text-lg">
+                <div className="absolute top-0 left-0 w-full bg-green-200 opacity-90 py-3 px-4 rounded-t-lg rounded-b text-center border-b text-lg">
                     <h1>{story.title}</h1>
                 </div>
             </div>
