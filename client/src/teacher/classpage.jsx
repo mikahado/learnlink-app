@@ -14,7 +14,7 @@ function ClassPage() {
     <div className="bg-secondaryPurple h-screen font-barlow">
       <nav class="bg-primaryPurple p-4">
         <div class="container mx-auto flex justify-between items-center">
-          <h1 className="text-3xl font-barlow">Hello Mr.{teacher}</h1>
+          <h1 className="text-3xl font-barlow">Hello Mr.Smith</h1>
         </div>
       </nav>
 
