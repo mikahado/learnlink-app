@@ -17,11 +17,6 @@ import TextToSpeechAdd from '../src/TtsParent.js'
 export const TeacherContext = createContext()
 
 const App = () => {
-  // useEffect(() => {
-  //   fetch("/placeholders")
-  //     .then((r) => r.json())
-  //     .then((data) => console.log(data));
-  // }, []);
 
   const [voiceId, setVoiceId] = useState("");
   const [teacher,setTeacher] = useState([]);
@@ -35,8 +30,8 @@ const App = () => {
     <TeacherContext.Provider value={[teacher,setTeacher]}>
     <div>
       <Routes>
-        <Route path="/students/:studentId" element={<StudentHome stories={stories} />} />
-        <Route path="/students/:studentId/lessons/:lessonId" element={<StudentWorkView stories={stories} />} />
+        <Route path="/students/:studentId" element={<StudentHome />} />
+        <Route path="/students/:studentId/lessons/:lessonId" element={<StudentWorkView />} />
         <Route path="/login" element={<LoginTeacher />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/classpage" element={<ClassPage />} />
