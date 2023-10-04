@@ -1,42 +1,67 @@
 import { Link } from "react-router-dom";
 import React, { useContext,useState,useEffect } from "react";
 import { TeacherContext } from "../App";
+import { useNavigate  } from "react-router-dom";
 
 function SignUp() {
   const buttonClassname =
     "border border-black rounded-lg px-2 w-48 sm:w-24 mt-20 bg-ctaGreen";
 
   const [teacher,setTeacher] = useContext(TeacherContext)
-
+  const [allTeachers,setAllTeachers] = useState([])
+  const navigate = useNavigate();
+  
+  useEffect(()=>{
+    fetch('/teachers')
+    .then(r=>r.json())
+    .then(data=>{
+        setAllTeachers(data)
+    })
+  },[])
+  
   function handleFormSubmit(e) {
     e.preventDefault();
     const teacherInfo = {
-        "First Name": e.target["first-name"].value,
-        "Last Name": e.target["last-name"].value,
+        first_name: e.target["first-name"].value,
+        last_name: e.target["last-name"].value,
         email: e.target["email"].value,
         username: e.target["username"].value,
         password: e.target["password"].value,
-        school: e.target["school"].value,
+        school_name: e.target["school"].value,
     };
-      // fetch("/teachers/signup", {
-      //       method: "POST",
-      //       headers: {
-      //         "Content-Type": "application/json",
-      //       },
-      //       body: JSON.stringify({ 
-      //         "first_name": teacherInfo['First Name'],
-      //         "last_name": teacherInfo['Last Name'],
-      //         "email": teacherInfo.email,
-      //         "username": teacherInfo.username,
-      //         "school": teacherInfo.school,
-      //         "password": teacherInfo.password,
-      //        }),
-      //     })
-      //   .then(r=>r.json())
-      //   .then(data=>{
-      //       console.log(data)
-      //       setTeacher(teacherInfo)
-      //   });
+    if (allTeachers.filter((obj)=>obj.username == teacherInfo.username).length == 0 && teacherInfo.password.length >= 8){
+      fetch("/teachers/signup", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ 
+              "first_name": teacherInfo.first_name,
+              "last_name": teacherInfo.last_name,
+              "email": teacherInfo.email,
+              "username": teacherInfo.username,
+              "school_name": teacherInfo.school_name,
+              "password": teacherInfo.password,
+             }),
+          })
+        .then(r=>r.json())
+        .then(data=>{
+            console.log(data)
+            setTeacher(data)
+            navigate('/recordvoice')
+        })
+        .catch((error) => {
+          // Handle the error and return a statement to the client
+          console.error("An error occurred: " + error.message);
+          // You can return a statement or update your client's state accordingly
+        })
+    }
+    else if (teacherInfo.password.length < 8){
+      window.alert("Password must be at least 8 characters long.")
+    }
+    else{
+      window.alert("Username not available and all fields must be filled.")
+    }
     e.target.reset();
     console.log(teacherInfo);
   }
@@ -56,7 +81,7 @@ function SignUp() {
               placeholder="First Name"
             />
             <input name="email" className={inputCss} placeholder="Email" />
-            <input name="username" className={inputCss} placeholder="Username" />
+            <input name="username" className={inputCss} placeholder="Username"/>
           </div>
           <div className="col-span-1 space-y-8">
             <input
