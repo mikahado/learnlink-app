@@ -30,7 +30,7 @@ function LoginTeacher() {
             .then((r) => {
               if (r.ok) {
                 r.json().then((user) => {
-                  setTeacher(user.username)
+                  setTeacher(user)
                 });
                 navigate("/recordvoice")
               }
