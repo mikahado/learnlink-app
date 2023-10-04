@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import MaskFace from "./Mask group.png";
+import { useNavigate } from "react-router-dom";
 
 const Table = () => {
   const [selectedOption, setSelectedOption] = useState("Option 1"); // State to track the selected dropdown option
 
+  const navigate = useNavigate()
+
   const students = [
     {
-      id: 1,
       name: "John Doe",
       lesson: "Math",
       progress: "75%",
@@ -14,16 +16,44 @@ const Table = () => {
       device: "Desktop",
     },
     {
-      id: 2,
-      name: "Jane Smith",
+      name: "Alice Smith",
+      lesson: "English",
+      progress: "88%",
+      progressTime: "1.8 hours",
+      device: "Laptop",
+    },
+    {
+      name: "Bob Johnson",
+      lesson: "History",
+      progress: "62%",
+      progressTime: "2.5 hours",
+      device: "Tablet",
+    },
+    {
+      name: "Emily Davis",
       lesson: "Science",
-      progress: "90%",
+      progress: "95%",
+      progressTime: "1.2 hours",
+      device: "Smartphone",
+    },
+    {
+      name: "Michael Brown",
+      lesson: "Geography",
+      progress: "70%",
+      progressTime: "2.3 hours",
+      device: "Desktop",
+    },
+    {
+      name: "Olivia Wilson",
+      lesson: "Music",
+      progress: "82%",
       progressTime: "1.5 hours",
       device: "Laptop",
     },
-    // Add more student data as needed
   ];
-
+  
+  // Rest of your code to render the table with the students data
+  
   const ProgressTime = [
     "Yearly Progress",
     "Monthly Progress",
@@ -71,31 +101,36 @@ const Table = () => {
         </tr>
       </thead>
       <tbody className="bg-white">
-        {students.map((student, rowIndex) => (
-          <tr
-            key={student.id}
-            className={`${rowIndex !== students.length - 1 ? "border-b border-black" : ""}`}
-          >
-            {Object.values(student).map((col, colIndex) => (
-              <td
-                key={colIndex}
-                className={`px-6 py-4 whitespace-no-wrap ${
-                  colIndex < Object.values(student).length - 1 ? "border-r border-black" : ""
-                }`}
-              >
-                {colIndex === 0 ? (
-                  <div className="flex items-center justify-center">
-                    <img src={MaskFace} alt="MaskFace" className="mr-2" />
-                    <span>{col}</span>
-                  </div>
-                ) : (
-                  col
-                )}
-              </td>
-            ))}
-          </tr>
-        ))}
-      </tbody>
+  {students.map((student, rowIndex) => (
+  <tr className={`${rowIndex !== students.length - 1 ? "border-b border-black" : ""}`}>
+  {Object.keys(student).map((key, colIndex) => {
+    if (key !== "id") { // Exclude the "id" column
+      return (
+        <td
+          key={colIndex}
+          className={`px-6 py-4 whitespace-no-wrap ${
+            colIndex < Object.keys(student).length - 1 ? "border-r border-black" : ""
+          }`}
+        >
+          {colIndex === 0 ? (
+            <div className="flex items-center text-center justify-center" onClick={() => navigate("/studentprofile")}>
+              <img src={MaskFace} alt="MaskFace" className="mr-2" style={{ width: "24px", height: "24px" }} />
+              {student[key]}
+            </div>
+          ) : (
+            student[key]
+          )}
+        </td>
+      );
+    }
+    return null; // Exclude the "id" column
+  })}
+</tr>
+
+  ))}
+</tbody>
+
+
     </table>
   </div>
   );
