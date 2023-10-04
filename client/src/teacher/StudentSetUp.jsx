@@ -1,4 +1,18 @@
+import { Link } from "react-router-dom";
+import { UserContext } from "../context/user";
+import { useContext } from "react";
+import { useNavigate  } from "react-router-dom";
+
 function StudentSetUp() {
+   
+    //User Context variables
+
+    const {teacherData, setTeacherData} = useContext(UserContext)
+    const navigate = useNavigate();
+
+    console.log(teacherData)
+
+
   const inputCss =
   "block font-thin indent-2 border rounded-2xl placeholder-black border-black bg-inactiveGray h-[64px] lg:w-80 xl:w-280 md:w-48 sm:w-40";
   const buttonClassname =
@@ -8,11 +22,9 @@ function StudentSetUp() {
     e.preventDefault();
     const studentInput = {
       'studentInfo':{
-      "First Name": e.target["first-name"].value,
-      "Last Initial": e.target["last-initial"].value,
-      "Age": e.target["age"].value,
-      "Grade": e.target["grade"].value,
-      "Device": e.target["device"].value,
+      "first_name": e.target["first-name"].value,
+      "last_initial": e.target["last-initial"].value,
+      "DOB": e.target["DOB"].value,
       "Pin": e.target["pin"].value},
       'accommodations':{
         "Color Variations":e.target["color-variations"].checked,
@@ -33,6 +45,37 @@ function StudentSetUp() {
     };
     e.target.reset()
     console.log(studentInput);
+
+    //student fetch
+  //   fetch("/teachers/signup", {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify({ 
+  //       "first_name": studentInput.studentInfo.first_name,
+  //       "last_name": studentInput.studentInfo.last_name,
+  //       "DOB": studentInput.studentInfo.DOB,
+  //       "pin": studentInput.studentInfo.Pin,
+  //       "accommodations": studentInput.accommodations
+  //      }),
+  //   })
+  // .then(r=>r.json())
+  // .then(data=>{
+
+  //     setTeacherData(data)
+      
+  //   navigate('/classpage');
+
+  // })
+  // .catch((error) => {
+  //   // Handle the error and return a statement to the client
+  //   console.error("An error occurred: " + error.message);
+  //   // You can return a statement or update your client's state accordingly
+  // })
+    
+
+
   }
 
   return (
@@ -48,26 +91,19 @@ function StudentSetUp() {
         <div className="grid grid-cols-2 place-items-center m-0">
           <div className="col-span-1 space-y-4">
             <input
-              name="first-name"
+              name="first_name"
               className={inputCss}
               placeholder="First Name"
             />
-            <input name="email" className={inputCss} placeholder="Email" />
-            <input name="state" className={inputCss} placeholder="State" />
+            <input name="DOB" className={inputCss} placeholder="DOB" />
           </div>
           <div className="col-span-1 space-y-4">
             <input
-              name="last-name"
+              name="last_name"
               className={inputCss}
-              placeholder="Last Name"
+              placeholder="Last Initial"
             />
-            <input
-              name="password"
-              type="password"
-              className={inputCss}
-              placeholder="Password"
-            />
-            <input name="school" className={inputCss} placeholder="School" />
+            <input name="pin" className={inputCss} placeholder="Pin" />
           </div>
         </div>
 
@@ -129,6 +165,7 @@ function StudentSetUp() {
         type="text"
       />
     </div>
+          {/* if submit is sucessfull, useNavigate to the classpage */}
           <div className="flex flex-col items-center mt-2">
             <button type="submit" className={buttonClassname}>
               Submit
