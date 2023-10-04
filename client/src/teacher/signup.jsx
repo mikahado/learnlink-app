@@ -78,9 +78,13 @@ function SignUp() {
 
   return (
     <div className="bg-primaryPurple h-screen text-center ">
-      <h1 className="text-5xl font-bold pt-20">Enter Information</h1>
-      <form onSubmit={handleFormSubmit} className="container mx-auto mt-40">
-        <div className="grid grid-cols-2 place-items-center m-0">
+      <h1 className="text-5xl font-bold pt-20">OSEA</h1>
+      <h1 className="text-3xl font-bold pt-2">a LearnLink application</h1>
+      <p className="text-2xl font-italics pt-50">All for learning and learning for All</p>
+      <p className="text-2xl font-italics pt-20">JOIN US!</p>
+      <form onSubmit={handleFormSubmit} className="container mx-auto mt-10">
+        
+        <div className="grid grid-cols-2 place-items-center m-20">
           <div className="col-span-1 space-y-8">
             <input
               name="first-name"
