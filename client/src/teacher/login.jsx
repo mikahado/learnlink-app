@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import React, { useContext,useState,useEffect } from "react";
-import { TeacherContext } from "../App";
+//import { TeacherContext } from "../App";
 import { useNavigate  } from "react-router-dom";
 
 
@@ -8,7 +8,7 @@ function LoginTeacher() {
   const inputCss =
     "block font-thin indent-2 border rounded-2xl placeholder-black border-black bg-white h-[64px] lg:w-80 xl:w-280 md:w-48 sm:w-40";
 
-  const [teacher,setTeacher] = useContext(TeacherContext)
+  //const [teacher,setTeacher] = useContext(TeacherContext)
   const navigate = useNavigate();
 
   function handleFormSubmit(e){
@@ -30,7 +30,7 @@ function LoginTeacher() {
             .then((r) => {
               if (r.ok) {
                 r.json().then((user) => {
-                  setTeacher(user)
+                  //setTeacher(user)
                 });
                 navigate("/recordvoice")
               }

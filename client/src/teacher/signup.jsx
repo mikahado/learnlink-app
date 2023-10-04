@@ -1,13 +1,13 @@
 import { Link } from "react-router-dom";
 import React, { useContext,useState,useEffect } from "react";
-import { TeacherContext } from "../App";
+//import { TeacherContext } from "../App";
 import { useNavigate  } from "react-router-dom";
 
 function SignUp() {
   const buttonClassname =
     "border border-black rounded-lg px-2 w-48 sm:w-24 mt-20 bg-ctaGreen";
 
-  const [teacher,setTeacher] = useContext(TeacherContext)
+  //const [teacher,setTeacher] = useContext(TeacherContext)
   const [allTeachers,setAllTeachers] = useState([])
   const navigate = useNavigate();
   
@@ -47,7 +47,7 @@ function SignUp() {
         .then(r=>r.json())
         .then(data=>{
             console.log(data)
-            setTeacher(data)
+            //setTeacher(data)
             navigate('/recordvoice')
         })
         .catch((error) => {
