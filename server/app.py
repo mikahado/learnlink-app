@@ -6,8 +6,10 @@ from flask_migrate import Migrate
 from flask_restful import Api, Resource
 from config import app, db, api
 from models import Teacher, Student, Subject
+from dotenv import load_dotenv
 import openai
 
+load_dotenv()
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -16,10 +18,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 migrate = Migrate(app, db)
 CORS(app)
 
-
-openai.api_key = "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"
-# openai.api_key = os.getenv("OPENAI_API_KEY")
-
+openai.api_key = os.getenv("OPENAI_API_KEY")
 
 # @app.route('/')
 # @app.route('/<int:id>')
@@ -175,6 +174,8 @@ def generate_prompt(input_text):
     """.format(
             input_text.capitalize()
         )
+
+
 
 # api.add_resource(TeacherSignup, '/teachers/signup')
 # api.add_resource(StudentSignup, '/students/signup')
