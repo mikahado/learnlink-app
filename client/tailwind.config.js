@@ -19,7 +19,8 @@ module.exports = {
       textBrown: '#362E2E'
     },
       fontFamily: {
-        custom: ["Inter",'Barlow', 'sans'],
+        inter: ["Inter", 'sans'],
+        barlow: ['"Barlow"', "sans-serif"],
       }
     },
   },

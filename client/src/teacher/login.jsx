@@ -8,7 +8,7 @@ function LoginTeacher() {
 
 
   return (
-    <div className="font-inter text-center content-around w-100 bg-primaryPurple h-screen">
+    <div className="font-barlow text-center content-around w-100 bg-primaryPurple h-screen">
       <h1 className="text-5xl font-bold pt-20">Welcome to LearnLink</h1>
       <br />
       <form className="container mx-auto mt-40">

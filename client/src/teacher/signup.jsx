@@ -45,7 +45,7 @@ function SignUp() {
     "block font-thin indent-2 border rounded-2xl placeholder-black border-black bg-white h-[64px] lg:w-80 xl:w-280 md:w-48 sm:w-40";
 
   return (
-    <div className="bg-primaryPurple h-screen text-center">
+    <div className="bg-primaryPurple h-screen text-center ">
       <h1 className="text-5xl font-bold pt-20">Enter Information</h1>
       <form onSubmit={handleFormSubmit} className="container mx-auto mt-40">
         <div className="grid grid-cols-2 place-items-center m-0">
