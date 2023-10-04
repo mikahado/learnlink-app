@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faVolumeUp } from '@fortawesome/free-solid-svg-icons';
 
 
-function TextToSpeech({ teacher_name, teacher_voice_id, text, onSetAudioPlayer, showPlayer, onError }) {
+function TextToSpeech({ text, onSetAudioPlayer, showPlayer, onError }) {
 
   const { teacherData } = useContext(UserContext);
 
