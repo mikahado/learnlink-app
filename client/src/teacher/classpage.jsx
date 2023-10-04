@@ -1,14 +1,20 @@
 import Table from "./TableOfStudents";
 import { Link } from "react-router-dom";
+import { UserContext } from "../context/user";
+import { useContext } from "react";
 
 function ClassPage() {
   const activeButton ="w-[121px] h-[32px] top-[104px] left-[20px] rounded-[10px] font-barlow bg-ctaGreen text-black";
   const inactiveButton ="w-[121px] h-[32px] top-[104px] left-[20px] rounded-[10px] font-barlow bg-inactiveGray hover:bg-primaryPurple text-black";
+  const {teacher, setTeacher} = useContext(UserContext)
+  console.log(teacher)
+
+
   return (
     <div className="bg-secondaryPurple h-screen font-barlow">
       <nav class="bg-primaryPurple p-4">
         <div class="container mx-auto flex justify-between items-center">
-          <h1 className="text-3xl font-barlow">Hello Mr.Smith</h1>
+          <h1 className="text-3xl font-barlow">Hello Mr.{teacher}</h1>
         </div>
       </nav>
 

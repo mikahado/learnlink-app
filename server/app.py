@@ -146,6 +146,21 @@ class TeacherUpdate(Resource):
                     db.session.commit()
 
                     return make_response(jsonify("hi"), 200)
+            
+
+class TeacherCatch(Resource):
+    def get(self, id):
+        teacher = Teacher.query.filter(Teacher.id == id).first()
+
+        if teacher:
+            teacher_info = teacher.to_dict()
+            students_info = [student.to_dict() for student in teacher.students]
+            teacher_info['students'] = students_info
+
+            return make_response(teacher_info, 200)
+
+        return jsonify({'error': 'Teacher not found'}), 404
+
     
 
 
@@ -228,6 +243,7 @@ api.add_resource(Students, '/students', endpoint='students')
 api.add_resource(Subjects, '/subjects', endpoint='subjects')
 api.add_resource(Moral, '/moral')
 api.add_resource(TeacherUpdate, '/teachers/<int:id>', endpoint='teacher')
+api.add_resource(TeacherCatch, '/teachers/<int:id>', endpoint='teacher_info')
 
 
 if __name__ == '__main__':

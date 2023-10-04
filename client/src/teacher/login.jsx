@@ -32,7 +32,7 @@ function LoginTeacher() {
                 r.json().then((user) => {
                   //setTeacher(user)
                 });
-                navigate("/recordvoice")
+                navigate("/classpage")
               }
               else {
                 window.alert("Incorrect username or password")

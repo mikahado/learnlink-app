@@ -25,6 +25,7 @@ class Teacher(db.Model, SerializerMixin):
 
     # Define the many-to-many relationship with subjects
     subjects = db.relationship('Subject', secondary='teacher_subjects', back_populates='teachers')
+    students = db.relationship('Student', backref='teacher', lazy=True)
 
     @hybrid_property
     def password_hash(self):
@@ -79,7 +80,7 @@ class Student(db.Model, SerializerMixin):
 
     # Define the many-to-many relationship with subjects
     subjects = db.relationship('Subject', secondary='student_subjects', back_populates='students')
-
+    teacher_id = db.Column(db.Integer, db.ForeignKey('teachers.id'))
     @validates('bio')
     def validate_name(self, key, bio):
         if len(str(bio)) > 250:
