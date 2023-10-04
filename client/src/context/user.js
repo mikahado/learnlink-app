@@ -28,9 +28,7 @@ const UserProvider = ({ children }) => {
       });
 }, [loggedIn]);
 
-
   // Load user data when the component mounts
-
 
   // Function to log the user out
   const logout = () => {
