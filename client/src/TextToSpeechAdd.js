@@ -4,9 +4,12 @@ import Play from "./teacher/play.png";
 import Record from "./teacher/record.png";
 import Return from "./teacher/return.png";
 import NotRecord from "./teacher/recording stoped .png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const TextToSpeechAdd = ({ onVoiceIdChange }) => {
+
+  const navigate = useNavigate();
+
   const instruParagraph = (
     <>
       <p>1. Stay 6 inches away from the microphone.</p>
@@ -134,6 +137,7 @@ const TextToSpeechAdd = ({ onVoiceIdChange }) => {
         const responseData = await response.json();
         console.log("Voice added successfully:", responseData);
         onVoiceIdChange(responseData);
+        navigate('/classpage');
         // setVoiceId(responseData.voice_id);
         // handleVoiceIdChange(responseData.voice_id)
       } else {
