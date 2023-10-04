@@ -57,7 +57,6 @@ Flask application: [http://127.0.0.1:5555](http://127.0.0.1:5555)
 - Visual design promotes high-contrast and color-permitting options for visual variances.
 - Multi-lingual AI text-to-speech option that offers the student to hear their personal teacher's voice. 
 
-<<<<<<<<< Temporary merge branch 1
 - React application: [http://127.0.0.1:4000](http://127.0.0.1:4000)
 - Flask application: [http://127.0.0.1:5555](http://127.0.0.1:5555)
 
