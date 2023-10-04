@@ -1,7 +1,7 @@
 import os
 from flask import Flask, request, make_response, jsonify, session, redirect, render_template, url_for
 from flask_sqlalchemy import SQLAlchemy
-from flask_cors import CORS
+# from flask_cors import CORS
 from flask_migrate import Migrate
 from flask_restful import Api, Resource
 from config import app, db, api
@@ -159,17 +159,17 @@ class Moral(Resource):
             model="text-davinci-003",
             prompt=prompt,
             temperature=0.9,
-            max_tokens=300
+            max_tokens=500
         )
-        return jsonify({'moral': response.choices[0].text.strip()})
+        moral_text = response.choices[0].text.strip()
+
+        return jsonify({'moral': moral_text})
     
 
 def generate_prompt(input_text):
     return f"""{input_text}
     
-    Summarize the moral of the story above in 280 characters or less for elementary school students with accessibility needs. Use lots of playful, meaningful emojis to assist in reading comprehension. 
-
-    Consider the bio of the student and tailor the summary to their needs.
+    Summarize the moral of Aesop's fable in 280 characters or less. Write it for elementary school students with accessibility needs. Use fun, meaningful emojis to assist in reading comprehension. 
 
     """.format(
             input_text.capitalize()
