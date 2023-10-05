@@ -5,6 +5,7 @@ import ClassPage from "./teacher/classpage";
 import StudentSetUp from "./teacher/StudentSetUp";
 import StudentProfile from "./teacher/studentprofile";
 import SignUp from "./teacher/signup";
+import Home from "./teacher/home";
 
 import React from "react";
 // import { useEffect } from "react";
@@ -46,6 +47,7 @@ const App = () => {
         <Route path="/newstudent" element={<StudentSetUp />} />
         <Route path="/studentprofile" element={<StudentProfile />} />
         <Route exact path="/recordvoice" element={<TtsParent />} />
+        <Route exact path="/home" element={<Home />} />
       </Routes>
       </UserProvider>
     </div>
