@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
+import Home from "./teacher/Home";
 import LoginTeacher from "./teacher/login";
 import ClassPage from "./teacher/classpage";
 import StudentSetUp from "./teacher/StudentSetUp";
@@ -38,6 +39,7 @@ const App = () => {
     <div>
       <UserProvider>
       <Routes>
+        <Route exact path="/home" element={<Home />} />
         <Route path="/students/:studentId" element={<StudentHome stories={stories} />} />
         <Route path="/students/:studentId/lessons/:lessonId" element={<StudentWorkView stories={stories} />} />
         <Route path="/login" element={<LoginTeacher />} />

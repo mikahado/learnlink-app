@@ -2,7 +2,7 @@ import React, { useContext,useState,useEffect } from "react";
 import { Link } from "react-router-dom";
 import { UserContext } from "../context/user";
 import { useNavigate  } from "react-router-dom";
-
+import MaskGroup from './Mask group.svg'
 
 function SignUp() {
 
@@ -77,14 +77,21 @@ function SignUp() {
     "block font-thin indent-2 border rounded-2xl placeholder-black border-black bg-white h-[64px] lg:w-80 xl:w-280 md:w-48 sm:w-40";
 
   return (
+    <>
     <div className="bg-primaryPurple h-screen text-center ">
-      <h1 className="text-5xl font-bold pt-20">OSEA</h1>
-      <h1 className="text-3xl font-bold pt-2">a LearnLink application</h1>
-      <p className="text-2xl font-italics pt-50">All for learning and learning for All</p>
-      <p className="text-2xl font-italics pt-20">JOIN US!</p>
-      <form onSubmit={handleFormSubmit} className="container mx-auto mt-10">
+
+        <div className="flex flex-col items-center justify-center">
+          <div className='flex flex-col text-center font-barlow italic mt-4'>
+            <h1 className='text-5xl'>OSEA</h1> {/* Adjusted text size */}
+            <label className='mt-2' >All for learning and learning for All</label>
+          </div>
+          <img src={MaskGroup} className="w-40 h-40 pt-5" alt="logo" />
+        </div>
+
+      <p className='mt-8'>JOIN OSEA!</p>
+      <form onSubmit={handleFormSubmit} className="container mx-auto mt-5">
         
-        <div className="grid grid-cols-2 place-items-center m-20">
+        <div className="grid grid-cols-2 place-items-center m-10">
           <div className="col-span-1 space-y-8">
             <input
               name="first-name"
@@ -108,14 +115,17 @@ function SignUp() {
             />
             <input name="school" className={inputCss} placeholder="School" />
           </div>
+          
         </div>
         <div className="flex flex-col items-center mt-2">
-          <button type="submit" className={buttonClassname}>
-            Next
-          </button>
-        </div>
+  <button type="submit" className={`${buttonClassname} py-2 px-4 text-xl`}>
+    Next
+  </button>
+</div>
+
       </form>
     </div>
+    </>
   );
 }
 

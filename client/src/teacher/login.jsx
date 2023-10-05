@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import React, { useContext,useState,useEffect } from "react";
 //import { TeacherContext } from "../App";
+import MaskGroup from './Mask group.svg'
+
 import { useNavigate  } from "react-router-dom";
 
 
@@ -46,10 +48,16 @@ function LoginTeacher() {
 
   return (
     <div className="font-barlow text-center content-around w-100 bg-primaryPurple h-screen">
-      <h1 className="text-5xl font-bold pt-20">Welcome to LearnLink</h1>
-      <br />
-      <form onSubmit={handleFormSubmit} className="container mx-auto mt-40">
-      <div className="grid grid-cols-1 place-items-center m-0 space-y-8">
+       
+        <div className="flex flex-col items-center justify-center">
+          <div className='flex flex-col text-center font-barlow italic mt-8'>
+            <h1 className='text-5xl'>OSEA</h1> {/* Adjusted text size */}
+          </div>
+          <img src={MaskGroup} className="w-40 h-40 pt-2" alt="logo" />
+        </div>
+        
+      <form onSubmit={handleFormSubmit} className="container mx-auto mt-10">
+      <div className="grid grid-cols-1 place-items-center m-0 space-y-5">
           <input
             type="username"
             id="username"
