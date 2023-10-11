@@ -6,6 +6,10 @@ This is the official monorepo for LearnLink, a TechEd platform dedicated to an e
 - [Getting Started](#getting-started)
 - [Features](#features)
 
+Here is the demo:
+https://www.youtube.com/watch?v=jujVtMplq9g
+
+
 ## Getting Started
 
 If you don't have Python installed: refer to the [Python Installation Guide](https://github.com/learn-co-curriculum/flatiron-python-flask-curriculum) for instructions.
