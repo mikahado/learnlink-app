@@ -6,7 +6,9 @@ This is the official monorepo for LearnLink, a TechEd platform dedicated to an e
 - [Getting Started](#getting-started)
 - [Features](#features)
 
-[![Alt text for broken image link](https://github.com/mikahado/learnlink-app/assets/64943455/a0d58957-e3aa-42e5-96ac-73589e178675)](https://www.youtube.com/watch?v=jujVtMplq9g)
+[![OSEA](https://github.com/mikahado/learnlink-app/assets/64943455/a0d58957-e3aa-42e5-96ac-73589e178675)]
+
+[Demo of LearnLink](https://www.youtube.com/watch?v=jujVtMplq9g)
 
 ## Getting Started
 
